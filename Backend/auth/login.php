@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
                     $_SESSION['role'] = $user['role']; // Simpan role
 
-                    header("Location: http://localhost:5173/"); // Arahkan ke halaman dashboard user
+                    header("Location: ../users/index.php"); // Arahkan ke halaman dashboard user
                     exit();
                 } else {
                     $errors[] = "Username atau password salah.";
@@ -92,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <button type="submit">Login</button>
             </div>
-            <p>Belum punya akun? <a href="dashboard.php">Daftar di sini</a></p>
         </form>
     </div>
 </body>

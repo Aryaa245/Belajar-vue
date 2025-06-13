@@ -2,6 +2,8 @@
     <header>
       <button class="btn list" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" 
       aria-controls="offcanvasWithBothOptions"><i class="bi bi-list fs-4"></i></button>
+     
+
 
       <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header">
@@ -51,7 +53,8 @@
         </div>
       <div class="search-container">
         <i class="bi bi-search"></i>
-        <input type="text" class="search" placeholder="Search"/>
+        <input type="text" class="search" placeholder="Search" id="searchInput" onkeyup="filterMenu()"/>
+
       </div>
       <div class="navbare">
         <nav>
@@ -80,5 +83,22 @@
       header.classList.remove('scrolled');
     }
   });
+
+
+  function filterMenu() {
+  const input = document.getElementById('searchInput');
+  const filter = input.value.toLowerCase();
+  const items = document.querySelectorAll('#menuTab .menu-item');
+
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    if (text.includes(filter)) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
   
 </script>
