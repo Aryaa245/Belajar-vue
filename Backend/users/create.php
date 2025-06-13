@@ -86,7 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Role:</label>
         <select name="role" required>
             <option value="admin">Admin</option>
+<<<<<<< HEAD
             <!-- <option value="user">User</option> -->
+=======
+            <option value="user">User</option>
+>>>>>>> 12a936247d6b885a4d6d31fcc08885590d3369fa
         </select>
 
         <button type="submit" class="btn">Simpan</button>
