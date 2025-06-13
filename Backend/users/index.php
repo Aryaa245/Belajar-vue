@@ -19,16 +19,16 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen User</title>
+    <title>Manajemen Admin</title>
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
     <div class="container">
         <div class="header-nav">
-            <h2>Manajemen User</h2>
+            <h2>Manajemen Admin</h2>
             <div>
                 <span>Halo, <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?> (<?php echo htmlspecialchars($_SESSION['role']); ?>) | </span>
-                <a href="../index.php">Halaman Utama</a> |
+                <a href="http://localhost:5173/">Halaman Utama</a> |
                 <a href="../auth/logout.php">Logout</a>
             </div>
         </div>
@@ -47,7 +47,7 @@ try {
             <div class="errors"><p><?php echo htmlspecialchars($page_error); ?></p></div>
         <?php endif; ?>
 
-        <p><a href="create.php" class="btn">Tambah User Baru</a></p>
+        <p><a href="create.php" class="btn">Tambah Admin Baru</a></p>
 
         <?php if (count($users) > 0): ?>
             <table>
