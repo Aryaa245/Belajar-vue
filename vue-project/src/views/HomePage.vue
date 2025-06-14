@@ -233,7 +233,7 @@
         <div class="product-grid" id="all-products">
           <!-- Legion 5 15IRX9 -->
           <div class="product-card discount">
-            <a href="product" style="text-decoration: none; color: inherit">
+            <a href="product/legion5" style="text-decoration: none; color: inherit">
               <div class="image-slide-wrapper">
                 <img src="../assets/Images/Legion 5 15IRX9.webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
                 <img src="../assets/Images/Lenovo-Legion-5-15IRX9-2.png" alt="Legion 5 hover" class="product-img second-img" style="height: 200px; width: 280px"/>
@@ -247,6 +247,8 @@
           </div>
           <!-- ASUS Zenbook -->
           <div class="product-card discount">
+            <a href="product/zenbook14" style="text-decoration: none; color: inherit">
+            
             <div class="image-slide-wrapper">
               <img src="../assets/Images/Asus Zenbook 14.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/zenbook 14 2.webp" alt="Legion 5 hover" class="product-img second-img" />
@@ -256,10 +258,13 @@
             <div class="price-rating">
               <span class="price"> Rp20.850.000​</span>
             </div>
+            </a>
           </div>
 
           <!-- ASUS ROG Scar G532LWS-I97SD6T-->
           <div class="product-card discount">
+            <a href="product/rogscar-g532lws" style="text-decoration: none; color: inherit">
+
             <div class="image-slide-wrapper">
               <img src="../assets/Images/ASUS ROG Scar G532LWS-I97SD6T 1.webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/ROG scar2.jpg" alt="Legion 5 hover" class="product-img second-img" />
@@ -269,6 +274,7 @@
             <div class="price-rating">
               <span class="price"> Rp62.999.000</span>
             </div>
+            </a>
           </div>
 
           <!-- Laptop ThinkPad E14 Gen 6 -->

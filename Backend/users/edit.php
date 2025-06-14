@@ -118,7 +118,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Role:</label>
         <select name="role" required>
             <option value="admin" <?php if ($user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
-            <option value="user" <?php if ($user['role'] == 'user') echo 'selected'; ?>>User</option>
         </select>
 
         <button type="submit" class="btn">Simpan Perubahan</button>

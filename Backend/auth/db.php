@@ -2,7 +2,7 @@
 // config/database.php
 
 $host = "localhost"; // atau alamat IP server database kamu
-$db_name = "prk_9";
+$db_name = "db_technologia";
 $username_db = "root"; // username database kamu
 $password_db = ""; // password database kamu (kosongkan jika tidak ada)
 

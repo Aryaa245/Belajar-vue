@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import Categories from '../views/Categories.vue'
 import Product from '../views/Product.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 
 const routes = [
   // Redirect root path ke homepage
@@ -10,7 +11,8 @@ const routes = [
   // Rute asli
   { path: '/homepage', name: 'HomePage', component: HomePage },
   { path: '/categories', name: 'Categories', component: Categories },
-  { path: '/product', name: 'Product', component: Product }
+  { path: '/products', name: 'Product', component: Product },
+  { path: '/product/:id', name: 'ProductDetail', component: ProductDetail }
 ]
 
 const router = createRouter({
