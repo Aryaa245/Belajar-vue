@@ -24,7 +24,7 @@
         <h1 style="font-weight: bold">{{ product.specs }}</h1>
         <p class="price">
           Rp{{ formatPrice(product.price) }}
-          <span class="old-price">Rp{{ formatPrice(product.oldPrice) }}</span>
+          <span class="old-price" v-if="product.oldPrice">Rp{{ formatPrice(product.oldPrice) }}</span>
         </p>
         <p class="status">{{ product.status }}</p>
 
@@ -38,9 +38,9 @@
           <p>{{ product.specs }}</p>
           <p>Category: {{ product.category.join(', ') }}</p>
           <div class="social-share">Share:
-            <a href=""><span><i class="bi bi-instagram"></i></span></a>
-            <a href=""><span><i class="bi bi-whatsapp"></i></span></a>
-            <a href=""><span><i class="bi bi-facebook"></i></span></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-whatsapp"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
           </div>
         </div>
       </div>
@@ -48,19 +48,16 @@
 
     <nav class="navbar navbar-expand-lg gi">
       <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item nav-underline">
-              <a class="nav-link active" href="#" data-tab="description-tab">Description</a>
+              <a class="nav-link" :class="{ active: activeTab === 'description-tab' }" @click.prevent="activeTab = 'description-tab'">Description</a>
             </li>
             <li class="nav-item nav-underline">
-              <a class="nav-link" href="#" data-tab="additional-tab">Additional information</a>
+              <a class="nav-link" :class="{ active: activeTab === 'additional-tab' }" @click.prevent="activeTab = 'additional-tab'">Additional information</a>
             </li>
             <li class="nav-item nav-underline">
-              <a class="nav-link" href="#" data-tab="qr-tab">QR Code</a>
+              <a class="nav-link" :class="{ active: activeTab === 'qr-tab' }" @click.prevent="activeTab = 'qr-tab'">QR Code</a>
             </li>
           </ul>
         </div>
@@ -68,7 +65,7 @@
     </nav>
 
     <div class="tab-content-container">
-      <div class="tab-content active" id="description-tab">
+      <div class="tab-content" v-show="activeTab === 'description-tab'" id="description-tab">
         <section class="product-description">
           <p><strong>Specification:</strong></p>
           <ul>
@@ -77,14 +74,14 @@
         </section>
       </div>
 
-      <div class="tab-content" id="additional-tab">
+      <div class="tab-content" v-show="activeTab === 'additional-tab'" id="additional-tab">
         <section>
           <h3>Additional Information</h3>
           <p>{{ product.additionalInfo }}</p>
         </section>
       </div>
 
-      <div class="tab-content" id="qr-tab">
+      <div class="tab-content" v-show="activeTab === 'qr-tab'" id="qr-tab">
         <section>
           <h3>QR Code</h3>
           <img :src="product.qrCode" alt="QR Code" style="max-width: 200px" />
@@ -93,35 +90,49 @@
       </div>
     </div>
   </main>
+
+  <div v-else-if="error">
+    <p>{{ error }}</p>
+  </div>
 </template>
 
 <script>
-import products from '@/data/products.json';
-
 export default {
   data() {
     return {
       product: null,
+      error: null,
+      activeTab: 'description-tab'
     };
   },
-  created() {
-    const id = this.$route.params.id;
-    this.product = products.find((p) => p.id === id);
-  },
-  mounted() {
-    const tabLinks = document.querySelectorAll(".nav-link[data-tab]");
-    const tabContents = document.querySelectorAll(".tab-content");
+  async created() {
+    const slug = this.$route.params.id;
+    try {
+      const res = await fetch(`http://localhost/technologia/Backend/products/get_product.php?id=${slug}`);
+      const data = await res.json();
 
-    tabLinks.forEach(link => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        tabLinks.forEach(link => link.classList.remove("active"));
-        tabContents.forEach(content => content.classList.remove("active"));
-        this.classList.add("active");
-        const tabId = this.getAttribute("data-tab");
-        document.getElementById(tabId).classList.add("active");
-      });
-    });
+      if (data.error) {
+        this.error = data.error;
+      } else {
+        this.product = {
+          id: data.slug,
+          title: data.title,
+          specs: data.specs,
+          price: parseInt(data.price),
+          oldPrice: parseInt(data.old_price),
+          status: data.status,
+          images: [data.image_1, data.image_2, data.image_3].filter(Boolean),
+          buyLink: data.buy_link,
+          category: data.category ? data.category.split(',') : [],
+          qrCode: data.qr_code,
+          fullSpecs: data.description ? data.description.split('|') : [],
+          additionalInfo: "Garansi 2 tahun, Tersedia di semua cabang, Dukungan purna jual tersedia, dll."
+        };
+      }
+    } catch (err) {
+      this.error = "Gagal mengambil data produk.";
+      console.error(err);
+    }
   },
   methods: {
     formatPrice(value) {
@@ -130,6 +141,8 @@ export default {
   }
 };
 </script>
+
+
 <style>
 body {
   font-family: 'Inter', sans-serif;
