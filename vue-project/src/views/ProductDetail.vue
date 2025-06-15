@@ -19,6 +19,8 @@
         </div>
       </div>
 
+      
+
       <div class="product-info">
         <h1 style="font-weight: bold">{{ product.title }}</h1>
         <h1 style="font-weight: bold">{{ product.specs }}</h1>
@@ -65,23 +67,23 @@
     </nav>
 
     <div class="tab-content-container">
-      <div class="tab-content" v-show="activeTab === 'description-tab'" id="description-tab">
+      <div :class="['tab-content', { active: activeTab === 'description-tab' }]" id="description-tab">
         <section class="product-description">
           <p><strong>Specification:</strong></p>
-          <ul>
+          <ul v-if="product.fullSpecs && product.fullSpecs.length">
             <li v-for="(spec, index) in product.fullSpecs" :key="index">{{ spec }}</li>
           </ul>
         </section>
       </div>
 
-      <div class="tab-content" v-show="activeTab === 'additional-tab'" id="additional-tab">
+      <div :class="['tab-content', { active: activeTab === 'additional-tab' }]" id="additional-tab">
         <section>
           <h3>Additional Information</h3>
           <p>{{ product.additionalInfo }}</p>
         </section>
       </div>
 
-      <div class="tab-content" v-show="activeTab === 'qr-tab'" id="qr-tab">
+      <div :class="['tab-content', { active: activeTab === 'qr-tab' }]" id="qr-tab">
         <section>
           <h3>QR Code</h3>
           <img :src="product.qrCode" alt="QR Code" style="max-width: 200px" />
@@ -89,6 +91,62 @@
         </section>
       </div>
     </div>
+
+    <section class="related-products">
+        <h2 style="text-decoration: underline">Related Products</h2>
+        <div class="product-grid">
+            <div class="product-card discount">
+            <div class="image-slide-wrapper">
+                <img src="../assets/Images/ASUS Gaming V16 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+                <img src="../assets/Images/ASUS Gaming V16 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+            </div>
+            <h3>ASUS Gaming V16</h3>
+            <p>Intel Core i5 | 16GB DDR5 SO-DIMM |  512GB M.2 NVMe | 16" WUXGA</p>
+            <div class="price-rating">
+                <span class="price"> Rp 14.519.000​</span>
+            </div>
+            </div>
+
+            <!-- ASUS ROG Scar G532LWS-I97SD6T-->
+            <div class="product-card discount">
+            <div class="image-slide-wrapper">
+                <img src="../assets/Images/MSI VECTOR 16HX AI (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+                <img src="../assets/Images/MSI VECTOR 16HX AI (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+            </div>
+            <h3>MSI VECTOR 16HX AI</h3>
+            <p>Intel Core Ultra 7-255HX|  RTX 5070 Ti GDDR7 12GB | 16" QHD | RAM 32GB DDR5</p>
+            <div class="price-rating">
+                <span class="price"> Rp.29.999.000</span>
+            </div>
+            </div>
+
+            <!-- Laptop ThinkPad E14 Gen 6 -->
+            <div class="product-card discount">
+            <div class="image-slide-wrapper">
+                <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+                <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+            </div>
+            <h3>ASUS ROG ZEPHYRUS G14</h3>
+            <p>AMD Ryzen AI 9 HX 370  | 32GB RAM | 2TB SSD | 16" IPS 2.5K (2560 x 1600, WQXGA)</p>
+            <div class="price-rating">
+                <span class="price"> Rp.50.999.000</span>
+            </div>
+            </div>
+
+            <!-- Acer Nitro V15 -->
+            <div class="product-card discount">
+            <div class="image-slide-wrapper">
+                <img src="../assets/Images/ASUS TUF A14 FA401UU (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+                <img src="../assets/Images/ASUS TUF A14 FA401UU (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+            </div>
+            <h3>ASUS TUF A14 FA401UU</h3>
+            <p>Ryzen 7 8845HS |RTX 4050-6GB GDDR6 | 14″ FHD  2.5K (2560 x 1600, WQXGA), 165Hz</p>
+            <div class="price-rating">
+                <span class="price">Rp.21.999.000</span>
+            </div>
+            </div>
+        </div>
+        </section>
   </main>
 
   <div v-else-if="error">
@@ -170,6 +228,14 @@ header {
   z-index: 1000;
   
 }
+
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+
 
 header.scrolled {
   background-color: rgba(255, 255, 255, 0.7); /* semi transparan */

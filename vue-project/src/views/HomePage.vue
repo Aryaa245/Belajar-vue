@@ -230,144 +230,46 @@
     <!-- New Arrival -->
     <div class="tab-content-container">
       <div class="tab-content active" id="newArival-tab">
-        <div class="product-grid" id="all-products">
-          <!-- Legion 5 15IRX9 -->
-          <div class="product-card discount">
-            <a href="product/legion5" style="text-decoration: none; color: inherit">
-              <div class="image-slide-wrapper">
-                <img src="../assets/Images/Legion 5 15IRX9.webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="../assets/Images/Lenovo-Legion-5-15IRX9-2.png" alt="Legion 5 hover" class="product-img second-img" style="height: 200px; width: 280px"/>
-              </div>
-              <h3>Legion 5 15IRX9</h3>
-              <p>Intel Core i7-13650HX | RTX 4060 | 15.6" FHD (1920x1080), 144Hz Refresh Rate | 2x 12GB SO-DIMM DDR5-4800 | Win 11 + office 2021</p>
-              <div class="price-rating">
-                <span class="price">Rp21.499.000<span class="old-price">Rp21.499.000</span></span>
-              </div>
-            </a>
-          </div>
-          <!-- ASUS Zenbook -->
-          <div class="product-card discount">
-            <a href="product/zenbook14" style="text-decoration: none; color: inherit">
-            
+        <div>
+    <!-- Section: New Arrival -->
+    <section class="categories" id="categories">
+      <div class="product-grid" id="all-products">
+        <div
+          class="product-card discount"
+          v-for="(product, index) in products"
+          :key="index"
+        >
+          <a
+            :href="`/product/${product.slug}`"
+            style="text-decoration: none; color: inherit"
+          >
             <div class="image-slide-wrapper">
-              <img src="../assets/Images/Asus Zenbook 14.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/zenbook 14 2.webp" alt="Legion 5 hover" class="product-img second-img" />
+              <img
+                :src="product.image_1"
+                :alt="product.title"
+                class="product-img first-img"
+                style="height: 200px; width: 280px"
+              />
+              <img
+                :src="product.image_2 || product.image_1"
+                :alt="product.title"
+                class="product-img second-img"
+                style="height: 200px; width: 280px"
+              />
             </div>
-            <h3>ASUS Zenbook 14 OLED</h3>
-            <p>Intel Core Ultra 7 Processor 155H | Intel Arc Graphics | 14" OLED | 32GB LPDDR5X | Win 11 + Home & Students 2021</p>
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.specs }}</p>
             <div class="price-rating">
-              <span class="price"> Rp20.850.000​</span>
-            </div>
-            </a>
-          </div>
+              <span class="price">
+                Rp{{ formatPrice(product.price) }}
 
-          <!-- ASUS ROG Scar G532LWS-I97SD6T-->
-          <div class="product-card discount">
-            <a href="product/rogscar-g532lws" style="text-decoration: none; color: inherit">
-
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/ASUS ROG Scar G532LWS-I97SD6T 1.webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/ROG scar2.jpg" alt="Legion 5 hover" class="product-img second-img" />
+              </span>
             </div>
-            <h3>ASUS ROG Scar G532LWS-I97SD6T</h3>
-            <p>Intel Core i9-10980HK | RTX 2070 | 15.6-inch FHD (1920×1080), 300Hz Refresh Rate | 2X16GB DDR4 | Win 10 Home</p>
-            <div class="price-rating">
-              <span class="price"> Rp62.999.000</span>
-            </div>
-            </a>
-          </div>
-
-          <!-- Laptop ThinkPad E14 Gen 6 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/Laptop ThinkPad E14 Gen 6.webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/Thinkpad E14 2.webp" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ThinkPad E14 Gen 6</h3>
-            <p>AMD Ryzen 5 7535U | AMD Radeon 660M | 14" WUXGA (1920x1200) IPS | 1x 8GB SO-DIMM DDR5-4800 | Win 11 Pro</p>
-            <div class="price-rating">
-              <span class="price"> Rp16.100.000</span>
-            </div>
-          </div>
-
-          <!-- Acer Nitro V15 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/acer nitroo v15.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/acer niro v15 2.jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>Acer Nitro V15</h3>
-            <p>Intel Core i9-13900H | RTX 4060 | 15.6" FHD (1920 x 1080) IPS, 144 Hz Refresh Rate | 16GB DDR5 | Win 11 + Home & Students 2021</p>
-            <div class="price-rating">
-              <span class="price">Rp16.599.000</span>
-            </div>
-          </div>
-
-          <!-- ASUS Vivobook Go 14 E1404FA -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/(1)ASUS Vivobook Go 14 E1404FA.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/ASUS Vivobook Go 14 E1404FA 2.jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ASUS Vivobook Go 14 E1404FA</h3>
-            <p>AMD Ryzen 5-7520U | AMD Radeon Graphics | 14" FHD (1920 x 1080), 60 Hz Refresh Rate | 16GB LPDDR5 | Win 11 Home</p>
-            <div class="price-rating">
-              <span class="price">Rp7.349.000</span>
-            </div>
-          </div>
-
-          <!-- Axio Pongo 725 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/(1)Axio Pongo 725.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/Axio Pongo 725 2.webp" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>Axio Pongo 725</h3>
-            <p>Intel Core i7-12650H | RTX 2050 | 15.6" FHD (1920x1080), 144hz Refresh Rate | 16GB - 32GB DDR4 | Win 11 Home</p>
-            <div class="price-rating">
-              <span class="price"> Rp9.899.000</span>
-            </div>
-          </div>
-
-          <!-- MacBook Air 15 M2 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/MacBook Air 15 M2.jpeg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/MacBook Air 15 M2 2.jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>MacBook Air 15 M2</h3>
-            <p>Apple M2 Chip (8-Core CPU 10-Core GPU) | 8GB RAM | 512GB SSD | 15.3" Liquid Retina Display | Office 365</p>
-            <div class="price-rating">
-              <span class="price"> Rp20.715.000</span>
-            </div>
-          </div>
-
-          <!-- LENOVO LOQ 15IRX9 i7 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/LENOVO LOQ 15IRX9 i7 1.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 250px" />
-              <img src="../assets/Images/LENOVO LOQ 15IRX9 i7.webp" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>LENOVO LOQ 15IRX9 i7</h3>
-            <p>Intel Core i7-13650HX | RTX 4060 | 15.6" FHD (1920x1080), 144Hz Refresh Rate | 12GB SO-DIMM DDR5-4800 | Win 11 + Home & Students 2021</p>
-            <div class="price-rating">
-              <span class="price">Rp17.260.000</span>
-            </div>
-          </div>
-
-          <!-- ASUS TUF Gaming F16 -->
-          <div class="product-card discount">
-            <div class="image-slide-wrapper">
-              <img src="../assets/Images/ASUS TUF Gaming F16 1.jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="../assets/Images/ASUS TUF Gaming F16 2.jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ASUS TUF Gaming F16</h3>
-            <p>Intel Core i7-13650HX | RTX 4050 | 16" FHD (1920 x 1200, WUXGA), 165Hz Refresh Rate | 64GB DDR5-4800 SO-DIMM |Win 11 + Home & Students 2021</p>
-            <div class="price-rating">
-              <span class="price"> Rp22.799.000</span>
-            </div>
-          </div>
+          </a>
         </div>
+      </div>
+    </section>
+  </div>
       </div>
 
       <!-- Best Seller -->
@@ -859,6 +761,30 @@
 <script>
 export default {
   name: 'HomePage',
+  data() {
+  return {
+    products: []
+  };
+},
+methods: {
+  formatPrice(value) {
+    return parseInt(value).toLocaleString("id-ID");
+  }
+},
+async created() {
+  try {
+    const res = await fetch("http://localhost/technologia/Backend/products/get_all_products.php");
+    const data = await res.json();
+    if (!data.error) {
+      this.products = data;
+    } else {
+      console.error(data.error);
+    }
+  } catch (err) {
+    console.error("Gagal mengambil produk:", err);
+  }
+},
+
   mounted() {
     const tabLinks = document.querySelectorAll(".nav-link[data-tab]");
     const tabContents = document.querySelectorAll(".tab-content");
@@ -897,3 +823,64 @@ export default {
 
 
 </script>
+
+<style>
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 0; /* tambahkan ini */
+}
+
+  .image-slide-wrapper {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.product-card {
+  width: 280px;
+  height: auto;
+  overflow: hidden;
+}
+
+
+.product-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Saat hover, geser ke dalam container */
+.first-img {
+  z-index: 2;
+}
+
+.second-img {
+  z-index: 1;
+  transform: translateX(100%);
+}
+
+.product-card:hover .first-img {
+  transform: translateX(-100%);
+}
+
+.product-card:hover .second-img {
+  transform: translateX(0%);
+}
+
+.tab-content-container {
+  padding-bottom: 0; /* hilangkan padding bawah jika ada */
+  margin-bottom: 0;
+}
+
+
+</style>

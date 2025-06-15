@@ -28,6 +28,7 @@ try {
             <h2>Manajemen Admin</h2>
             <div>
                 <span>Halo, <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?> (<?php echo htmlspecialchars($_SESSION['role']); ?>) | </span>
+                <a href="../products/create_product.php">Tambahkan Produk</a> |
                 <a href="http://localhost:5173/">Halaman Utama</a> |
                 <a href="../auth/logout.php">Logout</a>
             </div>

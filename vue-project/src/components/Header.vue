@@ -62,7 +62,7 @@
             <li><a href="../HomePage#carouselExample">Home</a></li>
             <li><a href="../HomePage#about-us">About</a></li>
             <li><a href="../HomePage#categories">Category</a></li>
-            <li><a href="#all-products">Products</a></li>
+            <li><a href="../HomePage#all-products">Products</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
