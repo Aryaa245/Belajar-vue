@@ -197,11 +197,6 @@
             <span>Students</span>
           </a>
         </div>
-       
-        
-       
-        
-        
       </div>
     </section>
   <!-- Navbar Product -->
@@ -308,7 +303,7 @@
               <img src="../assets/Images/ASUS Zenbook DUO UX8406.jpeg" alt="Asus" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/ASUS Zenbook DUO UX8406 v3.jpeg" alt="Asus" class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3 >ASUS Zenbook DUO UX8406</h3>
+            <h3 class="product-title">ASUS Zenbook DUO UX8406</h3>
             <p>Intel Core Ultra 7 155H | Intel Arc Graphics | 14" 3K (2880 x 1800) OLED, 120Hz Refresh Rate | 16GB LPDDR5 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price">Rp23.999.000</span>
@@ -321,7 +316,7 @@
               <img src="../assets/Images/th.jpeg" alt="Acer Lite (AL1-14M) - Metal Cover" class="product-img first-img" style="height: 200px; width: 280px"/>
               <img src="../assets/Images/Acer Lite (AL1-14M) - Metal Cover 2.jpeg" alt="Acer Lite (AL1-14M) - Metal Cover" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3 >Acer Lite (AL1-14M) - Metal Cover</h3>
+            <h3 class="product-title">Acer Lite (AL1-14M) - Metal Cover</h3>
             <p>Intel Core i3-1215U | Intel UHD Graphics | 14.0″ WUXGA 1920 x 120 | 1×8 GB DDR4 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp6.371.000</span>
@@ -335,7 +330,7 @@
               <img src="../assets/Images/Lenovo V14 G4 AMN V7ID.png" alt="Lenovo V14 G4 AMN V7ID" class="product-img first-img" style="height: 200px; width: 250px" />
               <img src="../assets/Images/Lenovo V14 G4 AMN V7ID 2.png" alt="Lenovo V14 G4 AMN V7ID" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Lenovo V14 G4 AMN V7ID</h3>
+            <h3 class="product-title">Lenovo V14 G4 AMN V7ID</h3>
             <p>AMD Ryzen 3 7320U | AMD Radeon 610M | 14" FHD (1920x1080) | 8GB LPDDR5-5500 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp5.500.000</span>
@@ -349,7 +344,7 @@
               <img src="../assets/Images/MacBook Air 13 2020.png" alt="MacBook Air 13 2020" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/MacBook Air 13 2020.png" alt="MacBook Air 13 2020 " class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3>MacBook Air 13 2020</h3>
+            <h3 class="product-title">MacBook Air 13 2020</h3>
             <p>Apple M1 Chip (8-Core CPU 7-Core GPU) | 8GB RAM | 256GB SSD | 13" Liquid Retina Display</p>
             <div class="price-rating">
               <span class="price"> Rp10.170.000</span>
@@ -363,7 +358,7 @@
               <img src="../assets/Images/Acer Nitro V 15 ANV15-41-R99D.png" alt="Acer Nitro V 15 ANV15-41-R99D" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/Acer Nitro V 15 ANV15-41-R99D 2.png" alt="Acer Nitro V 15 ANV15-41-R99D" class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3>Acer Nitro V 15 ANV15-41-R99D</h3>
+            <h3 class="product-title">Acer Nitro V 15 ANV15-41-R99D</h3>
             <p>AMD Ryzen 5-6600H | RTX 3050 | 15.6" FHD (1920x1080), 165Hz Refresh Rate | 8 GB DDR5 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp10.395.000</span>
@@ -376,7 +371,7 @@
               <img src="../assets/Images/MSI Modern 14-C7M-280ID 1.png" alt="MSI Modern 14-C7M-280ID" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/MSI Modern 14-C7M-280ID 2.jpg" alt="MSI Modern 14-C7M-280ID" class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3>MSI Modern 14-C7M-280ID</h3>
+            <h3 class="product-title">MSI Modern 14-C7M-280ID</h3>
             <p>AMD Ryzen 7 7730U | AMD Radeon Graphics | 14" FHD(1920x1080) | 16GB DDR4-3200 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp8.899.000</span>
@@ -389,7 +384,7 @@
               <img src="../assets/Images/Asus TUF A14 FA401UU 1.jpg" alt="Asus TUF A14 FA401UU" class="product-img first-img" style="height: 200px; width: 250px" />
               <img src="../assets/Images/Asus TUF A14 FA401UU 2.jpg" alt="Asus TUF A14 FA401UU" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Asus TUF A14 FA401UU</h3>
+            <h3 class="product-title">Asus TUF A14 FA401UU</h3>
             <p>Ryzen 7 8845HS | RTX 4050 | 14" 2.5K (2560 x 1600, WQXGA), 165Hz Refresh Rate | 8GB x 2 LPDDR5X 7500 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp21.999.000</span>
@@ -403,7 +398,7 @@
               <img src="../assets/Images/Lenovo LOQ 15ARP9 J5ID  1.png" alt="Lenovo LOQ 15ARP9 J5ID " class="product-img first-img" style="height: 200px; width: 250px" />
               <img src="../assets/Images/Lenovo LOQ 15ARP9 J5ID  2.png" alt="Lenovo LOQ 15ARP9 J5ID " class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Lenovo LOQ 15ARP9 J5ID </h3>
+            <h3 class="product-title">Lenovo LOQ 15ARP9 J5ID </h3>
             <p>AMD Ryzen 7 7435HS | RTX 4050 | 15.6" FHD (1920x1080), 144Hz Refresh Rate | 32GB DDR5-4800 | Win 11 + 365 Basic + Office Home 2024</p>
             <div class="price-rating">
               <span class="price"> Rp14.699.000 </span >
@@ -416,7 +411,7 @@
               <img src="../assets/Images/HP 14S DQ5152TU 1.png" alt="HP 14S DQ5152TU " class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/HP 14S DQ5152TU 2.png" alt="HP 14S DQ5152TU " class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3>HP 14S DQ5152TU </h3>
+            <h3 class="product-title">HP 14S DQ5152TU </h3>
             <p>IIntel Core i5 1235U | Intel Iris Xᵉ Graphics | 14" FHD (1920 x 1080) | 8 GB DDR4-3200 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price">Rp7.099.000</span>
@@ -429,7 +424,7 @@
               <img src="../assets/Images/MSI Katana 15 B13VFK 1850ID 1.png" alt="HP 14S DQ5152TU " class="MSI Katana 15 B13VFK 1850ID" style="height: 200px; width: 280px" />
               <img src="../assets/Images/MSI Katana 15 B13VFK 1850ID 2.png" alt="HP 14S DQ5152TU " class="MSI Katana 15 B13VFK 1850ID" style="height: 200px; width: 250px"/>
             </div>
-            <h3>MSI Katana 15 B13VFK 1850ID</h3>
+            <h3 class="product-title">MSI Katana 15 B13VFK 1850ID</h3>
             <p>Intel Core i7-13620H | RTX 4060 | 15.6" QHD(2560x1440), 165Hz Refresh Rate | 16GB (8GB x 2, DDR5-5200) | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price">Rp19.999.000</span>
@@ -448,7 +443,7 @@
                 <img src="../assets/Images/MSI VECTOR 16HX 1.jpeg" alt="MSI VECTOR 16HX" class="product-img first-img" style="height: 230px; width: 300px" />
                 <img src="../assets/Images/MSI VECTOR 16HX 2.png" alt="MSI VECTOR 16HX" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>MSI VECTOR 16HX</h3>
+            <h3 class="product-title">MSI VECTOR 16HX</h3>
             <p>
             Intel Core Ultra 9 processor 275HX | RTX 5080 | 16″ QHD+ (2560×1600), 240Hz Refresh Rate |
             16GB (8GB*2 DDR5-5600), Max 96GB
@@ -472,7 +467,7 @@
           <img src="../assets/Images/Lenovo Yoga Slim 7 14ILL10 0UID Aura Edition Core Ultra 5 226V 16GB.jpeg" alt="Lenovo Yoga Slim 7" class="product-img first-img" style="height: 200px; width: 280px" />
           <img src="../assets/Images/Lenovo Yoga Slim 7 2.png" alt="Lenovo Yoga Slim 7" class="product-img second-img" style="height: 200px; width: 280px"/>
         </div>
-        <h3>Lenovo Yoga Slim 7</h3>
+        <h3 class="product-title">Lenovo Yoga Slim 7</h3>
         <p>
           Intel Core Ultra 5 226V | Intel Arc Graphics | 14″ OLED 2.8K Touch 120Hz | 16GB LPDDR5x | 512GB SSD PCIe 4.0
         </p>
@@ -496,7 +491,7 @@
             <img src="../assets/Images/Asus ExpertBook P1 P1403CVA 1.png" alt="Asus ExpertBook P1 P1403CVA" class="product-img first-img" style="height: 200px; width: 280px" />
             <img src="../assets/Images/Asus ExpertBook P1 P1403CVA 2.png" alt="Asus ExpertBook P1 P1403CVA" class="product-img second-img" style="height: 200px; width: 280px"/>
           </div>
-          <h3>Asus ExpertBook P1 P1403CVA</h3>
+          <h3 class="product-title">Asus ExpertBook P1 P1403CVA</h3>
           <p>
             Intel Core i5-13420H | Intel UHD Graphics | 14″ FHD Anti-glare | 8GB DDR5 | 512GB SSD | Win 11 + Office 2021
           </p>
@@ -519,7 +514,7 @@
             <img src="../assets/Images/Acer Nitro Lite NL16 71G 74MV 1.png" alt="Acer Nitro Lite NL16 71G 74MV" class="product-img first-img" style="height: 200px; width: 280px" />
             <img src="../assets/Images/Acer Nitro Lite NL16 71G 74MV 2.png" alt="Acer Nitro Lite NL16 71G 74MV" class="product-img second-img" style="height: 200px; width: 280px"/>
           </div>
-          <h3>Acer Nitro Lite NL16 71G</h3>
+          <h3 class="product-title">Acer Nitro Lite NL16 71G</h3>
           <p>
             Intel Core i7-13620H | RTX 2050 4GB | 16″ WUXGA 180Hz IPS | 16GB DDR5 | 512GB SSD | Win 11 + Office 2024
           </p>
@@ -543,7 +538,7 @@
             <img src="../assets/Images/HP OmniBook X 14 FE0333QU 1.png" alt="HP OmniBook X 14 FE0333QU" class="product-img first-img" style="height: 200px; width: 280px" />
             <img src="../assets/Images/HP OmniBook X 14 FE0333QU  2.png" alt="HP OmniBook X 14 FE0333QU" class="product-img second-img" style="height: 200px; width: 280px"/>
           </div>
-          <h3>HP OmniBook X 14</h3>
+          <h3 class="product-title">HP OmniBook X 14</h3>
           <p>
             Snapdragon X Elite | Adreno GPU | 14″ 2.2K Touch IPS | 16GB LPDDR5x | 1TB SSD | Win 11 + Office 2021
           </p>
@@ -567,7 +562,7 @@
             <img src="../assets/Images/MSI Prestige 16 B1VEG 1.jpg" alt="MSI Prestige 16 B1VEG 223ID" class="product-img first-img" style="height: 200px; width: 280px" />
             <img src="../assets/Images/MSI Prestige 16 B1VEG 2.jpg" alt="MSI Prestige 16 B1VEG 223ID" class="product-img second-img" style="height: 200px; width: 280px"/>
           </div>
-          <h3>MSI Prestige 16 B1VEG</h3>
+          <h3 class="product-title">MSI Prestige 16 B1VEG</h3>
           <p>
             Intel Core Ultra 7 155H | RTX 4050 6GB | 16″ QHD+ 100% DCI-P3 | 32GB LPDDR5 | 1TB SSD | Win 11 + Office
           </p>
@@ -592,7 +587,7 @@
               <img src="../assets/Images/MSI Stealth 16 AI+ A3HVGG 1.png" alt="MSI Stealth 16 AI+ A3HVGG" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/MSI Stealth 16 AI+ A3HVGG 2.png" alt="MSI Stealth 16 AI+ A3HVGG" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>MSI Stealth 16 AI+ A3HVGG</h3>
+            <h3 class="product-title">MSI Stealth 16 AI+ A3HVGG</h3>
             <p>
               Ryzen AI 9 365 | RTX 4070 8GB | 16″ QHD+ 240Hz | 32GB LPDDR5x | 1TB SSD | Win 11 + Office 2021
             </p>
@@ -617,7 +612,7 @@
               <img src="../assets/Images/Acer Aspire Lite 14 AL1 14M 3MID 1.png" alt="Acer Aspire Lite 14 AL1" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/Acer Aspire Lite 14 AL1 14M 3MID 2.png" alt="Acer Aspire Lite 14 AL1" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Acer Aspire Lite 14</h3>
+            <h3 class="product-title">Acer Aspire Lite 14</h3>
             <p>
               Intel i3-1215U | Intel UHD | 14″ WUXGA IPS | 8GB DDR4 | 512GB SSD | Win 11 + Office + M365
             </p>
@@ -642,7 +637,7 @@
               <img src="../assets/Images/HP Victus 15 FA2717TX 1.png" alt="HP Victus 15 FA2717TX" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/HP Victus 15 FA2717TX 2.png" alt="HP Victus 15 FA2717TX" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>HP Victus 15 FA2717TX</h3>
+            <h3 class="product-title">HP Victus 15 FA2717TX</h3>
             <p>
               Intel i5-13420H | RTX 4050 6GB | 15.6″ FHD 144Hz | 16GB DDR4 | 512GB SSD | Win 11 + OHS + M365
             </p>
@@ -667,7 +662,7 @@
               <img src="../assets/Images/Acer Aspire Lite 14 AL14 1.png" alt="Acer Aspire Lite 14 AL14-32P-C2SS" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/Acer Aspire Lite 14 AL14 2.png" alt="Acer Aspire Lite 14 AL14-32P-C2SS" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Acer Aspire Lite 14 AL14</h3>
+            <h3 class="product-title">Acer Aspire Lite 14 AL14</h3>
             <p>
               Intel N150 | Intel UHD | 14″ WUXGA IPS | 8GB LPDDR5 | 256GB SSD | Win 11 + OHS
             </p>
@@ -692,7 +687,7 @@
               <img src="../assets/Images/ASUS TUF F16 FX607VU 1.png" alt="ASUS TUF F16 FX607VU" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/ASUS TUF F16 FX607VU 3.png" alt="ASUS TUF F16 FX607VU" class="product-img second-img" style="height: 180px; width: 250px"/>
             </div>
-            <h3>ASUS TUF F16 FX607VU</h3>
+            <h3 class="product-title">ASUS TUF F16 FX607VU</h3>
             <p>
               Intel i7-13620H | RTX 4050 6GB | 16″ FHD+ 165Hz | 16GB DDR5 | 512GB SSD | Win 11 + OHS 2024 + M365
             </p>
