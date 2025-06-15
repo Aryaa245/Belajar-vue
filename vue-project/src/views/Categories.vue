@@ -2,11 +2,11 @@
    <section class="categories" id="categories">
       <h2>Browse By Category</h2>
       <div class="category-list">
-        <a href="#" class="category-item">
+        <a href="Workstastion" class="category-item">
           <div class="icon">🖥️</div>
           <span>Workstation</span>
         </a>
-        <a href="#" class="category-item">
+        <a href="Business" class="category-item">
           <div class="icon">💼</div>
           <span>Business</span>
         </a>

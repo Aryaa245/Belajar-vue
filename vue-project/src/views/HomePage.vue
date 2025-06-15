@@ -168,13 +168,13 @@
       </div>
       <div class="category-list">
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="Workstastion" class="category-item">
             <div class="icon">🖥️</div>
             <span>Workstation</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="Business" class="category-item">
             <div class="icon">💼</div>
             <span>Business</span>
           </a>
