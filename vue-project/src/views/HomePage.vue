@@ -168,13 +168,13 @@
       </div>
       <div class="category-list">
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="Workstastion" class="category-item">
             <div class="icon">🖥️</div>
             <span>Workstation</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="Business" class="category-item">
             <div class="icon">💼</div>
             <span>Business</span>
           </a>
@@ -186,13 +186,13 @@
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="VideoEditing" class="category-item">
             <div class="icon">🎞️</div>
             <span>Video Editing</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="Students" class="category-item">
             <div class="icon">🎓</div>
             <span>Students</span>
           </a>
