@@ -30,8 +30,8 @@
           <div class="product-card discount">
             <a href="product1.html" style="text-decoration: none; color: inherit">
               <div class="image-slide-wrapper">
-                <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Axioo Mybook Z10 (1).jpeg" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Axioo Mybook Z10 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" style="height: 200px; width: 280px"/>
+                <img src="../assets/Images/Axioo Mybook Z10 (1).jpeg" class="product-img first-img" style="height: 200px; width: 280px" />
+                <img src="../assets/Images/Axioo Mybook Z10 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" style="height: 200px; width: 280px"/>
               </div>
               <h3>Axioo Mybook Z10 </h3>
               <p>IIntel Core i5-1335U | Intel Iris Xe Graphics | 14" FHD (1920x1080) IPS | 8GB SODIMM DDR4 | Win 11 Home </p>
@@ -43,8 +43,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Acer Aspire Vero AV14 (4).webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Acer Aspire Vero AV14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Acer Aspire Vero AV14 (4).webp" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Acer Aspire Vero AV14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Acer Aspire Vero AV14</h3>
             <p>Intel Core i5-1335U | Intel Iris Xe Graphics | 14" IPS (1920 x 1080) | 16 GB LPDDR4X | Windows 11 Home </p>
@@ -54,8 +54,8 @@
           </div>
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Lenovo Ideapad Slim 3 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Lenovo Ideapad Slim 3 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Lenovo Ideapad Slim 3 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Lenovo Ideapad Slim 3 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
             </div>
             <h3>Lenovo Ideapad Slim 3</h3>
             <p>Intel Core i3-1215U | Integrated Intel UHD Graphics | 14" FHD (1920x1080) |  8GB Soldered DDR4-3200 | Win 11 Home Single</p>
@@ -66,8 +66,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Acer Swift Edge 16 (1).jpeg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Acer Swift Edge 16 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Acer Swift Edge 16 (1).jpeg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Acer Swift Edge 16 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Acer Swift Edge 16</h3>
             <p>AMD Ryzen 5 6600U | AMD Radeon 660M | 16" 4K (3840 x 2400), 90Hz | 16 GB LPDDR5 | Win 11 + Office Home & Student 2021 </p>
@@ -78,8 +78,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Advan Workplus (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Advan Workplus (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Advan Workplus (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Advan Workplus (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Advan Workplus</h3>
             <p>AMD Ryzen 5 6600H | AMD Integrated Graphics | 14" FHD (1920 x 1200)IPS | 16 DDR5 | Win 11 Original </p>
@@ -90,8 +90,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Asus Vivobook Go 15 (1).jpeg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Asus Vivobook Go 15 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Asus Vivobook Go 15 (1).jpeg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Asus Vivobook Go 15 (2).jpeg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Asus Vivobook Go 15</h3>
             <p>AMD Ryzen 5 7520U | AMD Radeon Graphics | 15.6” FHD (1920 x 1200), 60hz | 16 GB LPDDR5 | Win 11 + Office Home 2024 + Microsoft 365</p>
@@ -102,8 +102,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\AXIOO Hype 5 AMD (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\AXIOO Hype 5 AMD (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/AXIOO Hype 5 AMD (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/AXIOO Hype 5 AMD (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>AXIOO Hype 5 AMD</h3>
             <p>AMD Ryzen 5-6600H | AMD Radeon 660M | 14" IPS (1920 x 1080) | 16GB DDR5 FHD | Win 11 Home</p>
@@ -114,8 +114,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Infinix INbook X2 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Infinix INbook X2 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Infinix INbook X2 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/Infinix INbook X2 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Infinix INbook X2 </h3>
             <p>Intel Core i5-1334U | Intel Iris Xe Graphics | 14" FHD (1920 x 1080), IPS | 16GB DDR4 | Win 11 Home</p>
@@ -126,8 +126,8 @@
 
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Dell XPS 13 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 250px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\Dell XPS 13 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/Dell XPS 13 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 250px" />
+              <img src="../assets/Images/Dell XPS 13 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>Dell XPS 13</h3>
             <p> Intel Core Ultra 7 155H | Intel Arc graphics | 13.4" FHD (1920 x 1200) | 16GB LPDDR5X | Win 11 Home</p>
@@ -139,8 +139,8 @@
           <!-- ASUS TUF Gaming F16 -->
           <div class="product-card discount">
             <div class="image-slide-wrapper">
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\HP Pavilion X360 11 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-              <img src="C:\xampp2\htdocs\technologia\vue-project\src\assets\Images\HP Pavilion X360 11 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+              <img src="../assets/Images/HP Pavilion X360 11 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img src="../assets/Images/HP Pavilion X360 11 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
             </div>
             <h3>HP Pavilion X360 11</h3>
             <p>Intel Core 3 100U | Intel Graphics | 8 GB DDR4-3200 | 14" FHD (1920 x 1080) IPS |  Win 11 + Office 2021</p>
