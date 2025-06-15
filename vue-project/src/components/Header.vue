@@ -71,34 +71,59 @@
 </template>
 
 <script>
-  export default {
-    name: 'AppHeader'
+export default {
+  name: 'AppHeader',
+  mounted() {
+    const searchInput = document.getElementById('searchInput');
+
+    searchInput.addEventListener('keyup', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      const productTitles = document.querySelectorAll('.product-title');
+
+      let found = false;
+
+      productTitles.forEach(title => {
+        // Hapus highlight sebelumnya
+        title.classList.remove('highlight');
+
+        if (query && title.textContent.toLowerCase().includes(query)) {
+          if (!found) {
+            title.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            found = true;
+          }
+          title.classList.add('highlight');
+        }
+      });
+    });
   }
+};
 
-  window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {  // jika scroll lebih dari 50px
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+window.addEventListener('scroll', function () {
+  const header = document.querySelector('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
 
-
-  function filterMenu() {
+function filterMenu() {
   const input = document.getElementById('searchInput');
   const filter = input.value.toLowerCase();
   const items = document.querySelectorAll('#menuTab .menu-item');
 
   items.forEach(item => {
     const text = item.textContent.toLowerCase();
-    if (text.includes(filter)) {
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
+    item.style.display = text.includes(filter) ? '' : 'none';
   });
 }
-
-  
 </script>
+
+<style>
+  .product-title.highlight {
+  background-color: yellow;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+</style>

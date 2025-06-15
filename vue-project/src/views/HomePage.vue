@@ -168,13 +168,13 @@
       </div>
       <div class="category-list">
         <div class="reveal">
-          <a href="Workstastion" class="category-item">
+          <a href="#" class="category-item">
             <div class="icon">🖥️</div>
             <span>Workstation</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="Business" class="category-item">
+          <a href="#" class="category-item">
             <div class="icon">💼</div>
             <span>Business</span>
           </a>
@@ -186,13 +186,13 @@
           </a>
         </div>
         <div class="reveal">
-          <a href="VideoEditing" class="category-item">
+          <a href="#" class="category-item">
             <div class="icon">🎞️</div>
             <span>Video Editing</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="VideoEditing" class="category-item">
+          <a href="#" class="category-item">
             <div class="icon">🎓</div>
             <span>Students</span>
           </a>
@@ -230,9 +230,9 @@
     <!-- New Arrival -->
     <div class="tab-content-container">
       <div class="tab-content active" id="newArival-tab">
-        <div>
+        <!-- <div> -->
     <!-- Section: New Arrival -->
-    <section class="categories" id="categories">
+    <!-- <section class="categories" id="categories"> -->
       <div class="product-grid" id="all-products">
         <div
           class="product-card discount"
@@ -257,7 +257,7 @@
                 style="height: 200px; width: 280px"
               />
             </div>
-            <h3>{{ product.title }}</h3>
+            <h3 class="product-title">{{ product.title }}</h3>
             <p>{{ product.specs }}</p>
             <div class="price-rating">
               <span class="price">
@@ -268,8 +268,8 @@
           </a>
         </div>
       </div>
-    </section>
-  </div>
+    <!-- </section> -->
+  <!-- </div> -->
       </div>
 
       <!-- Best Seller -->
@@ -282,7 +282,7 @@
                 <img src="../assets/Images/Asus ROG Zephyrus G14.webp" alt="Asus ROG Zephyrus G14" class="product-img first-img" style="height: 200px; width: 280px" />
                 <img src="../assets/Images/Asus ROG Zephyrus G14 2.webp" alt="Asus ROG Zephyrus G14" class="product-img second-img" style="height: 200px; width: 280px"/>
               </div>
-              <h3>Asus ROG Zephyrus G14</h3>
+              <h3 class="product-title">Asus ROG Zephyrus G14</h3>
               <p>AMD Ryzen 9 7940HS | RTX 4060 | 14" QHD (2560 x 1600, WQXGA), 165Hz Refresh Rate | 16GB DDR5 |Win 11 Home</p>
               <div class="price-rating">
                 <span class="price"> Rp23.499.000</span>
@@ -295,7 +295,7 @@
               <img src="../assets/Images/Lenovo Ideapad Slim 5i.jpeg" alt="Lenovo Ideapad Slim 5i" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/Lenovo Ideapad Slim 5i 2.jpeg" alt="Lenovo Ideapad Slim 5i" class="product-img second-img" style="height: 200px; width: 280px" />
             </div>
-            <h3>Lenovo Ideapad Slim 5i</h3>
+            <h3 class="product-title">Lenovo Ideapad Slim 5i</h3>
             <p>Intel Core 7 240H | Integrated Intel Graphics | 14" WUXGA (1920x1200) | 2x 8GB SO-DIMM DDR5-5600 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp11.369.000​</span>
@@ -308,7 +308,7 @@
               <img src="../assets/Images/ASUS Zenbook DUO UX8406.jpeg" alt="Asus" class="product-img first-img" style="height: 200px; width: 280px" />
               <img src="../assets/Images/ASUS Zenbook DUO UX8406 v3.jpeg" alt="Asus" class="product-img second-img" style="height: 200px; width: 250px"/>
             </div>
-            <h3>ASUS Zenbook DUO UX8406</h3>
+            <h3 >ASUS Zenbook DUO UX8406</h3>
             <p>Intel Core Ultra 7 155H | Intel Arc Graphics | 14" 3K (2880 x 1800) OLED, 120Hz Refresh Rate | 16GB LPDDR5 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price">Rp23.999.000</span>
@@ -321,7 +321,7 @@
               <img src="../assets/Images/th.jpeg" alt="Acer Lite (AL1-14M) - Metal Cover" class="product-img first-img" style="height: 200px; width: 280px"/>
               <img src="../assets/Images/Acer Lite (AL1-14M) - Metal Cover 2.jpeg" alt="Acer Lite (AL1-14M) - Metal Cover" class="product-img second-img" style="height: 200px; width: 280px"/>
             </div>
-            <h3>Acer Lite (AL1-14M) - Metal Cover</h3>
+            <h3 >Acer Lite (AL1-14M) - Metal Cover</h3>
             <p>Intel Core i3-1215U | Intel UHD Graphics | 14.0″ WUXGA 1920 x 120 | 1×8 GB DDR4 | Win 11 + Office Home & Students 2021</p>
             <div class="price-rating">
               <span class="price"> Rp6.371.000</span>

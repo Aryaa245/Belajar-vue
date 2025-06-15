@@ -61,48 +61,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <title>Tambah Produk</title>
   <link rel="stylesheet" href="../CSS/style.css">
-  <style>
-    form {
-      max-width: 700px;
-      margin-top: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    input[type="text"], input[type="number"], textarea, select, input[type="file"] {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      padding: 10px 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .message.success {
-      background-color: #d4edda;
-      padding: 10px;
-      border-left: 6px solid #28a745;
-      margin-bottom: 20px;
-    }
-    .errors {
-      background-color: #f8d7da;
-      padding: 10px;
-      border-left: 6px solid #dc3545;
-      margin-bottom: 20px;
-    }
-  </style>
+<style>
+  .form-container {
+    max-width: 900px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px 40px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .full-width {
+    grid-column: span 2;
+  }
+
+  button {
+    grid-column: span 2;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .message.success {
+    background-color: #d4edda;
+    padding: 10px;
+    border-left: 6px solid #28a745;
+    margin-bottom: 20px;
+  }
+
+  .errors {
+    background-color: #f8d7da;
+    padding: 10px;
+    border-left: 6px solid #dc3545;
+    margin-bottom: 20px;
+  }
+</style>
+
 </head>
 <body>
 <div class="container">
@@ -121,51 +141,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   <?php endif; ?>
 
-  <form method="post" enctype="multipart/form-data">
-    <label>Slug/ID Produk:
-      <input type="text" name="slug" required>
-    </label>
-    <label>Judul Produk:
-      <input type="text" name="title" required>
-    </label>
-    <label>Spesifikasi Singkat:
-      <input type="text" name="specs" required>
-    </label>
-    <label>Harga:
-      <input type="number" name="price" required>
-    </label>
-    <label>Harga Lama:
-      <input type="number" name="old_price">
-    </label>
-    <label>Status:
-      <select name="status">
-        <option value="In Stock">In Stock</option>
-        <option value="Out of Stock">Out of Stock</option>
-      </select>
-    </label>
-    <label>Gambar 1 (wajib):
-      <input type="file" name="image_1_file" required>
-    </label>
-    <label>Gambar 2:
-      <input type="file" name="image_2_file">
-    </label>
-    <label>Gambar 3:
-      <input type="file" name="image_3_file">
-    </label>
-    <label>Kategori (dipisah koma):
-      <input type="text" name="category">
-    </label>
-    <label>Link Pembelian:
-      <input type="text" name="buy_link">
-    </label>
-    <label>Deskripsi Panjang/Detail (pisahkan pakai '|'):
-      <textarea name="description" rows="5"></textarea>
-    </label>
-    <label>QR Code:
-      <input type="file" name="qr_code_file">
-    </label>
-    <button type="submit">Simpan Produk</button>
-  </form>
+  <form method="post" enctype="multipart/form-data" class="form-container">
+  <div class="form-group">
+    <label>Slug/ID Produk:</label>
+    <input type="text" name="slug" required>
+  </div>
+
+  <div class="form-group">
+    <label>Judul Produk:</label>
+    <input type="text" name="title" required>
+  </div>
+
+  <div class="form-group">
+    <label>Spesifikasi Singkat:</label>
+    <input type="text" name="specs" required>
+  </div>
+
+  <div class="form-group">
+    <label>Harga:</label>
+    <input type="number" name="price" required>
+  </div>
+
+  <div class="form-group">
+    <label>Harga Lama:</label>
+    <input type="number" name="old_price">
+  </div>
+
+  <div class="form-group">
+    <label>Status:</label>
+    <select name="status">
+      <option value="In Stock">In Stock</option>
+      <option value="Out of Stock">Out of Stock</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Kategori (dipisah koma):</label>
+    <input type="text" name="category">
+  </div>
+
+  <div class="form-group">
+    <label>Link Pembelian:</label>
+    <input type="text" name="buy_link">
+  </div>
+
+  <div class="form-group">
+    <label>Gambar 1 (wajib):</label>
+    <input type="file" name="image_1_file" required>
+  </div>
+
+  <div class="form-group">
+    <label>Gambar 2:</label>
+    <input type="file" name="image_2_file">
+  </div>
+
+  <div class="form-group">
+    <label>Gambar 3:</label>
+    <input type="file" name="image_3_file">
+  </div>
+
+  <div class="form-group">
+    <label>QR Code:</label>
+    <input type="file" name="qr_code_file">
+  </div>
+
+  <div class="form-group full-width">
+    <label>Deskripsi Panjang/Detail (pisahkan pakai '|'):</label>
+    <textarea name="description" rows="5"></textarea>
+  </div>
+
+  <button type="submit">Simpan Produk</button>
+</form>
+
 </div>
 </body>
 </html>
