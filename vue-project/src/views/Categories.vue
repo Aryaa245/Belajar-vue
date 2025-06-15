@@ -10,15 +10,15 @@
           <div class="icon">💼</div>
           <span>Business</span>
         </a>
-        <a href="#" class="category-item dark-category">
+        <a href="Categories" class="category-item dark-category">
           <div class="icon">🎮</div>
           <span>Gaming</span>
         </a>
-        <a href="#" class="category-item">
+        <a href="VideoEditing" class="category-item">
           <div class="icon">🎞️</div>
           <span>Video Editing</span>
         </a>
-        <a href="#" class="category-item">
+        <a href="Students" class="category-item">
           <div class="icon">🎓</div>
           <span>Students</span>
         </a>

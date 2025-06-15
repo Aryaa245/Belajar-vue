@@ -186,13 +186,13 @@
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="VideoEditing" class="category-item">
             <div class="icon">🎞️</div>
             <span>Video Editing</span>
           </a>
         </div>
         <div class="reveal">
-          <a href="#" class="category-item">
+          <a href="VideoEditing" class="category-item">
             <div class="icon">🎓</div>
             <span>Students</span>
           </a>
