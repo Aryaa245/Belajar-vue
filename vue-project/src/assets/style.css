@@ -759,4 +759,7 @@ h2 {
 }       
      /* Akhir profil */
 
-    
+  .dark-category {
+  background-color: #e2e6ea;
+  color: black;
+}  

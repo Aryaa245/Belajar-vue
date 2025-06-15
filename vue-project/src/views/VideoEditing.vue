@@ -10,11 +10,11 @@
           <div class="icon">💼</div>
           <span>Business</span>
         </a>
-        <a href="Categories" class="category-item dark-category">
+        <a href="Categories" class="category-item">
           <div class="icon">🎮</div>
           <span>Gaming</span>
         </a>
-        <a href="VideoEditing" class="category-item">
+        <a href="VideoEditing" class="category-item dark-category">
           <div class="icon">🎞️</div>
           <span>Video Editing</span>
         </a>

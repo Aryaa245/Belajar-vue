@@ -6,11 +6,11 @@
           <div class="icon">🖥️</div>
           <span>Workstation</span>
         </a>
-        <a href="Bussiness" class="category-item">
+        <a href="Business" class="category-item">
           <div class="icon">💼</div>
           <span>Business</span>
         </a>
-        <a href="Categories" class="category-item dark-category">
+        <a href="Categories" class="category-item">
           <div class="icon">🎮</div>
           <span>Gaming</span>
         </a>
@@ -18,7 +18,7 @@
           <div class="icon">🎞️</div>
           <span>Video Editing</span>
         </a>
-        <a href="Students" class="category-item">
+        <a href="Students" class="category-item dark-category">
           <div class="icon">🎓</div>
           <span>Students</span>
         </a>

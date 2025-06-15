@@ -2,7 +2,7 @@
    <section class="categories" id="categories">
       <h2>Browse By Category</h2>
       <div class="category-list">
-        <a href="Workstastion" class="category-item">
+        <a href="Workstastion" class="category-item dark-category">
           <div class="icon">🖥️</div>
           <span>Workstation</span>
         </a>
@@ -10,7 +10,7 @@
           <div class="icon">💼</div>
           <span>Business</span>
         </a>
-        <a href="Categories" class="category-item dark-category">
+        <a href="Categories" class="category-item">
           <div class="icon">🎮</div>
           <span>Gaming</span>
         </a>
