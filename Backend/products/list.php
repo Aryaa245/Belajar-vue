@@ -4,6 +4,7 @@ require_once '../auth/db.php';
 
 $products = [];
 $bestSellers = [];
+$onSale=[];
 $error = null;
 
 try {
@@ -19,6 +20,13 @@ try {
 } catch (PDOException $e) {
     $error .= "<br>Gagal mengambil data produk Best Seller: " . $e->getMessage();
 }
+try {
+    $stmt = $conn->query("SELECT * FROM on_sale ORDER BY created_at DESC");
+    $onSale = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error .= "<br>Gagal mengambil data produk On Sale: " . $e->getMessage();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -34,7 +42,7 @@ try {
         <h2>Manajemen Produk</h2>
         <div>
             <span>Halo, <?php echo htmlspecialchars($_SESSION['nama_lengkap']); ?> (<?php echo htmlspecialchars($_SESSION['role']); ?>) | </span>
-            <a href="../dashboard/index.php">Halaman Utama</a> |
+            <a href="http://localhost:5173/">Halaman Utama</a> |
         </div>
     </div>
 
@@ -118,6 +126,43 @@ try {
     <?php else: ?>
         <p>Belum ada produk Best Seller.</p>
     <?php endif; ?>
+
+    
+    <h3>Produk On Sale</h3>
+<?php if (count($onSale) > 0): ?>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Judul</th>
+                <th>Slug</th>
+                <th>Harga</th>
+                <th>Status</th>
+                <th>Dibuat</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($onSale as $p): ?>
+                <tr>
+                    <td><?php echo $p['id']; ?></td>
+                    <td><?php echo htmlspecialchars($p['title']); ?></td>
+                    <td><?php echo htmlspecialchars($p['slug']); ?></td>
+                    <td>Rp<?php echo number_format($p['price'], 0, ',', '.'); ?></td>
+                    <td><?php echo $p['status']; ?></td>
+                    <td><?php echo $p['created_at']; ?></td>
+                    <td>
+                        <a href="edit_product.php?slug=<?= urlencode($p['slug']) ?>&type=on_sale" class="btn-edit">Edit</a>
+                        <a href="delete_product.php?slug=<?php echo urlencode($p['slug']); ?>&type=on_sale" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>Belum ada produk On Sale.</p>
+<?php endif; ?>
+
 </div>
 </body>
 </html>

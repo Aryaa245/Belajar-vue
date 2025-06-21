@@ -78,6 +78,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
         }
 
+        // ✅ Jika admin isi produk On Sale
+if (!empty($_POST['os_slug'])) {
+    $os_slug = $_POST['os_slug'];
+    $os_title = $_POST['os_title'];
+    $os_specs = $_POST['os_specs'];
+    $os_price = $_POST['os_price'];
+    $os_old_price = $_POST['os_old_price'];
+    $os_status = $_POST['os_status'];
+    $os_category = $_POST['os_category'];
+    $os_buy_link = $_POST['os_buy_link'];
+    $os_description = $_POST['os_description'];
+
+    uploadImage('os_image_1', $os_img1, $errors, 'Gambar 1 - On Sale');
+    uploadImage('os_image_2', $os_img2, $errors, 'Gambar 2 - On Sale');
+    uploadImage('os_image_3', $os_img3, $errors, 'Gambar 3 - On Sale');
+    uploadImage('os_qr_code', $os_qr, $errors, 'QR Code - On Sale');
+
+    $stmt3 = $conn->prepare("INSERT INTO on_sale (slug, title, specs, price, old_price, status, image_1, image_2, image_3, category, buy_link, description, qr_code)
+                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt3->execute([
+        $os_slug, $os_title, $os_specs, $os_price, $os_old_price, $os_status,
+        $os_img1, $os_img2, $os_img3, $os_category, $os_buy_link, $os_description, $os_qr
+    ]);
+}
+
+
         $conn->commit();
         $success = true;
 
@@ -96,72 +122,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <title>Tambah Produk</title>
   <link rel="stylesheet" href="../CSS/style.css">
-<style>
-  .form-container {
-    max-width: 900px;
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px 40px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
-
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-  }
-
-  .full-width {
-    grid-column: span 2;
-  }
-
-  button {
-    grid-column: span 2;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #45a049;
-  }
-
-  .message.success {
-    background-color: #d4edda;
-    padding: 10px;
-    border-left: 6px solid #28a745;
-    margin-bottom: 20px;
-  }
-
-  .errors {
-    background-color: #f8d7da;
-    padding: 10px;
-    border-left: 6px solid #dc3545;
-    margin-bottom: 20px;
-  }
-</style>
-
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group.full-width textarea {
+      width: 100%;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="number"], input[type="file"], select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    h3 {
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <h2>Tambah Produk Laptop</h2>
+
+  <h1>Tambah Produk</h1>
   <a href="list.php">&larr; Kembali ke daftar produk</a>
 
   <?php if ($success): ?>
@@ -176,154 +177,185 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   <?php endif; ?>
 
- <form method="post" enctype="multipart/form-data" class="form-container">
-  <!-- 🔶 New Arrival -->
-  <h3>Produk New Arrival</h3>
 
-  <div class="form-group">
-    <label>Slug/ID:</label>
-    <input type="text" name="na_slug" >
-  </div>
+  <form method="POST" enctype="multipart/form-data">
+    
+    <!-- ✅ NEW ARRIVAL -->
+    <h3>Produk New Arrival</h3>
+    <div class="form-group">
+      <label>Slug/ID:</label>
+      <input type="text" name="na_slug">
+    </div>
+    <div class="form-group">
+      <label>Judul Produk:</label>
+      <input type="text" name="na_title">
+    </div>
+    <div class="form-group full-width">
+      <label>Spesifikasi:</label>
+      <textarea name="na_specs" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Harga:</label>
+      <input type="number" name="na_price">
+    </div>
+    <div class="form-group">
+      <label>Harga Lama:</label>
+      <input type="number" name="na_old_price">
+    </div>
+    <div class="form-group">
+      <label>Status:</label>
+      <select name="na_status">
+        <option value="In Stock">In Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Kategori (pisahkan koma):</label>
+      <input type="text" name="na_category">
+    </div>
+    <div class="form-group">
+      <label>Link Pembelian:</label>
+      <input type="text" name="na_buy_link">
+    </div>
+    <div class="form-group">
+      <label>Gambar 1 (wajib):</label>
+      <input type="file" name="na_image_1">
+    </div>
+    <div class="form-group">
+      <label>Gambar 2:</label>
+      <input type="file" name="na_image_2">
+    </div>
+    <div class="form-group">
+      <label>Gambar 3:</label>
+      <input type="file" name="na_image_3">
+    </div>
+    <div class="form-group">
+      <label>QR Code:</label>
+      <input type="file" name="na_qr_code">
+    </div>
+    <div class="form-group full-width">
+      <label>Deskripsi (pakai | untuk pisah paragraf):</label>
+      <textarea name="na_description" rows="5"></textarea>
+    </div>
 
-  <div class="form-group">
-    <label>Judul Produk:</label>
-    <input type="text" name="na_title" >
-  </div>
+    <!-- ✅ BEST SELLER -->
+    <h3>Produk Best Seller</h3>
+    <div class="form-group">
+      <label>Slug/ID:</label>
+      <input type="text" name="bs_slug">
+    </div>
+    <div class="form-group">
+      <label>Judul Produk:</label>
+      <input type="text" name="bs_title">
+    </div>
+    <div class="form-group full-width">
+      <label>Spesifikasi:</label>
+      <textarea name="bs_specs" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Harga:</label>
+      <input type="number" name="bs_price">
+    </div>
+    <div class="form-group">
+      <label>Harga Lama:</label>
+      <input type="number" name="bs_old_price">
+    </div>
+    <div class="form-group">
+      <label>Status:</label>
+      <select name="bs_status">
+        <option value="In Stock">In Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Kategori (pisahkan koma):</label>
+      <input type="text" name="bs_category">
+    </div>
+    <div class="form-group">
+      <label>Link Pembelian:</label>
+      <input type="text" name="bs_buy_link">
+    </div>
+    <div class="form-group">
+      <label>Gambar 1 (wajib):</label>
+      <input type="file" name="bs_image_1">
+    </div>
+    <div class="form-group">
+      <label>Gambar 2:</label>
+      <input type="file" name="bs_image_2">
+    </div>
+    <div class="form-group">
+      <label>Gambar 3:</label>
+      <input type="file" name="bs_image_3">
+    </div>
+    <div class="form-group">
+      <label>QR Code:</label>
+      <input type="file" name="bs_qr_code">
+    </div>
+    <div class="form-group full-width">
+      <label>Deskripsi (pakai | untuk pisah paragraf):</label>
+      <textarea name="bs_description" rows="5"></textarea>
+    </div>
 
-  <div class="form-group full-width">
-    <label>Spesifikasi:</label>
-    <textarea name="na_specs" rows="3" ></textarea>
-  </div>
+    <!-- ✅ ON SALE -->
+    <h3>Produk On Sale</h3>
+    <div class="form-group">
+      <label>Slug/ID:</label>
+      <input type="text" name="os_slug">
+    </div>
+    <div class="form-group">
+      <label>Judul Produk:</label>
+      <input type="text" name="os_title">
+    </div>
+    <div class="form-group full-width">
+      <label>Spesifikasi:</label>
+      <textarea name="os_specs" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Harga:</label>
+      <input type="number" name="os_price">
+    </div>
+    <div class="form-group">
+      <label>Harga Lama:</label>
+      <input type="number" name="os_old_price">
+    </div>
+    <div class="form-group">
+      <label>Status:</label>
+      <select name="os_status">
+        <option value="In Stock">In Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Kategori (pisahkan koma):</label>
+      <input type="text" name="os_category">
+    </div>
+    <div class="form-group">
+      <label>Link Pembelian:</label>
+      <input type="text" name="os_buy_link">
+    </div>
+    <div class="form-group">
+      <label>Gambar 1 (wajib):</label>
+      <input type="file" name="os_image_1">
+    </div>
+    <div class="form-group">
+      <label>Gambar 2:</label>
+      <input type="file" name="os_image_2">
+    </div>
+    <div class="form-group">
+      <label>Gambar 3:</label>
+      <input type="file" name="os_image_3">
+    </div>
+    <div class="form-group">
+      <label>QR Code:</label>
+      <input type="file" name="os_qr_code">
+    </div>
+    <div class="form-group full-width">
+      <label>Deskripsi (pakai | untuk pisah paragraf):</label>
+      <textarea name="os_description" rows="5"></textarea>
+    </div>
 
-  <div class="form-group">
-    <label>Harga:</label>
-    <input type="number" name="na_price" >
-  </div>
+    <button type="submit">Simpan Produk</button>
+  </form>
 
-  <div class="form-group">
-    <label>Harga Lama:</label>
-    <input type="number" name="na_old_price">
-  </div>
-
-  <div class="form-group">
-    <label>Status:</label>
-    <select name="na_status">
-      <option value="In Stock">In Stock</option>
-      <option value="Out of Stock">Out of Stock</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label>Kategori (pisahkan koma):</label>
-    <input type="text" name="na_category">
-  </div>
-
-  <div class="form-group">
-    <label>Link Pembelian:</label>
-    <input type="text" name="na_buy_link">
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 1 (wajib):</label>
-    <input type="file" name="na_image_1" >
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 2:</label>
-    <input type="file" name="na_image_2">
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 3:</label>
-    <input type="file" name="na_image_3">
-  </div>
-
-  <div class="form-group">
-    <label>QR Code:</label>
-    <input type="file" name="na_qr_code">
-  </div>
-
-  <div class="form-group full-width">
-    <label>Deskripsi (pakai | untuk pisah paragraf):</label>
-    <textarea name="na_description" rows="5"></textarea>
-  </div>
-
-  <!-- 🔷 Best Seller -->
-  <h3>Produk Best Seller</h3>
-
-  <div class="form-group">
-    <label>Slug/ID:</label>
-    <input type="text" name="bs_slug" >
-  </div>
-
-  <div class="form-group">
-    <label>Judul Produk:</label>
-    <input type="text" name="bs_title" >
-  </div>
-
-  <div class="form-group full-width">
-    <label>Spesifikasi:</label>
-    <textarea name="bs_specs" rows="3" ></textarea>
-  </div>
-
-  <div class="form-group">
-    <label>Harga:</label>
-    <input type="number" name="bs_price" >
-  </div>
-
-  <div class="form-group">
-    <label>Harga Lama:</label>
-    <input type="number" name="bs_old_price">
-  </div>
-
-  <div class="form-group">
-    <label>Status:</label>
-    <select name="bs_status">
-      <option value="In Stock">In Stock</option>
-      <option value="Out of Stock">Out of Stock</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label>Kategori (pisahkan koma):</label>
-    <input type="text" name="bs_category">
-  </div>
-
-  <div class="form-group">
-    <label>Link Pembelian:</label>
-    <input type="text" name="bs_buy_link">
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 1 (wajib):</label>
-    <input type="file" name="bs_image_1" >
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 2:</label>
-    <input type="file" name="bs_image_2">
-  </div>
-
-  <div class="form-group">
-    <label>Gambar 3:</label>
-    <input type="file" name="bs_image_3">
-  </div>
-
-  <div class="form-group">
-    <label>QR Code:</label>
-    <input type="file" name="bs_qr_code">
-  </div>
-
-  <div class="form-group full-width">
-    <label>Deskripsi (pakai | untuk pisah paragraf):</label>
-    <textarea name="bs_description" rows="5"></textarea>
-  </div>
-
-  <button type="submit">Simpan Kedua Produk</button>
-</form>
-
-</form>
-
-</div>
 </body>
 </html>

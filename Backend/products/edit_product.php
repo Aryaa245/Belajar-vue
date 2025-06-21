@@ -2,33 +2,38 @@
 require_once '../auth/auth_check.php';
 require_once '../auth/db.php';
 
-// Validasi tipe
+// Ambil tipe dari query string
 $type = $_GET['type'] ?? 'products';
-$table = $type === 'best_seller' ? 'best_seller' : 'products';
+$validTypes = ['products', 'best_seller', 'on_sale'];
 
+if (!in_array($type, $validTypes)) {
+    die("Tipe produk tidak valid.");
+}
+
+$table = $type;
 $errors = [];
 $success = false;
 $product = null;
 
 try {
-    if ($type === 'best_seller') {
-        if (!isset($_GET['slug']) || empty($_GET['slug'])) {
-            die("Slug produk tidak valid.");
-        }
-        $slug = $_GET['slug'];
-        $stmt = $conn->prepare("SELECT * FROM best_seller WHERE slug = ?");
-        $stmt->execute([$slug]);
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        $id = $product['id'] ?? null;
-    } else {
+    if ($type === 'products') {
         if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
             die("ID produk tidak valid.");
         }
         $id = $_GET['id'];
-        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt = $conn->prepare("SELECT * FROM $table WHERE id = ?");
         $stmt->execute([$id]);
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
+        if (!isset($_GET['slug']) || empty($_GET['slug'])) {
+            die("Slug produk tidak valid.");
+        }
+        $slug = $_GET['slug'];
+        $stmt = $conn->prepare("SELECT * FROM $table WHERE slug = ?");
+        $stmt->execute([$slug]);
     }
+
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $id = $product['id'] ?? null;
 
     if (!$product) {
         die("Produk tidak ditemukan.");
@@ -37,7 +42,7 @@ try {
     die("Gagal mengambil data produk: " . $e->getMessage());
 }
 
-// Jika form disubmit
+// Proses update jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $specs = $_POST['specs'];
@@ -124,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <?php if (!empty($errors)): ?>
     <div class="errors">
       <?php foreach ($errors as $err): ?>
-        <p><?php echo htmlspecialchars($err); ?></p>
+        <p><?= htmlspecialchars($err) ?></p>
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
