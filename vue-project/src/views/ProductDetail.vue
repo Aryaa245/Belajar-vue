@@ -19,8 +19,6 @@
         </div>
       </div>
 
-      
-
       <div class="product-info">
         <h1 style="font-weight: bold">{{ product.title }}</h1>
         <h1 style="font-weight: bold">{{ product.specs }}</h1>
@@ -38,8 +36,9 @@
 
         <div class="meta">
           <p>{{ product.specs }}</p>
-          <p>Category: {{ product.category.join(', ') }}</p>
-          <div class="social-share">Share:
+          <p>Category: {{ product.category.join(", ") }}</p>
+          <div class="social-share">
+            Share:
             <a href="#"><i class="bi bi-instagram"></i></a>
             <a href="#"><i class="bi bi-whatsapp"></i></a>
             <a href="#"><i class="bi bi-facebook"></i></a>
@@ -93,60 +92,60 @@
     </div>
 
     <section class="related-products">
-        <h2 style="text-decoration: underline">Related Products</h2>
-        <div class="product-grid">
-            <div class="product-card discount">
-            <div class="image-slide-wrapper">
-                <img src="../assets/Images/ASUS Gaming V16 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="../assets/Images/ASUS Gaming V16 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ASUS Gaming V16</h3>
-            <p>Intel Core i5 | 16GB DDR5 SO-DIMM |  512GB M.2 NVMe | 16" WUXGA</p>
-            <div class="price-rating">
-                <span class="price"> Rp 14.519.000​</span>
-            </div>
-            </div>
-
-            <!-- ASUS ROG Scar G532LWS-I97SD6T-->
-            <div class="product-card discount">
-            <div class="image-slide-wrapper">
-                <img src="../assets/Images/MSI VECTOR 16HX AI (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="../assets/Images/MSI VECTOR 16HX AI (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>MSI VECTOR 16HX AI</h3>
-            <p>Intel Core Ultra 7-255HX|  RTX 5070 Ti GDDR7 12GB | 16" QHD | RAM 32GB DDR5</p>
-            <div class="price-rating">
-                <span class="price"> Rp.29.999.000</span>
-            </div>
-            </div>
-
-            <!-- Laptop ThinkPad E14 Gen 6 -->
-            <div class="product-card discount">
-            <div class="image-slide-wrapper">
-                <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ASUS ROG ZEPHYRUS G14</h3>
-            <p>AMD Ryzen AI 9 HX 370  | 32GB RAM | 2TB SSD | 16" IPS 2.5K (2560 x 1600, WQXGA)</p>
-            <div class="price-rating">
-                <span class="price"> Rp.50.999.000</span>
-            </div>
-            </div>
-
-            <!-- Acer Nitro V15 -->
-            <div class="product-card discount">
-            <div class="image-slide-wrapper">
-                <img src="../assets/Images/ASUS TUF A14 FA401UU (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-                <img src="../assets/Images/ASUS TUF A14 FA401UU (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-            </div>
-            <h3>ASUS TUF A14 FA401UU</h3>
-            <p>Ryzen 7 8845HS |RTX 4050-6GB GDDR6 | 14″ FHD  2.5K (2560 x 1600, WQXGA), 165Hz</p>
-            <div class="price-rating">
-                <span class="price">Rp.21.999.000</span>
-            </div>
-            </div>
+      <h2 style="text-decoration: underline">Related Products</h2>
+      <div class="product-grid">
+        <div class="product-card discount">
+          <div class="image-slide-wrapper">
+            <img src="../assets/Images/ASUS Gaming V16 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+            <img src="../assets/Images/ASUS Gaming V16 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+          </div>
+          <h3>ASUS Gaming V16</h3>
+          <p>Intel Core i5 | 16GB DDR5 SO-DIMM | 512GB M.2 NVMe | 16" WUXGA</p>
+          <div class="price-rating">
+            <span class="price"> Rp 14.519.000​</span>
+          </div>
         </div>
-        </section>
+
+        <!-- ASUS ROG Scar G532LWS-I97SD6T-->
+        <div class="product-card discount">
+          <div class="image-slide-wrapper">
+            <img src="../assets/Images/MSI VECTOR 16HX AI (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+            <img src="../assets/Images/MSI VECTOR 16HX AI (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+          </div>
+          <h3>MSI VECTOR 16HX AI</h3>
+          <p>Intel Core Ultra 7-255HX| RTX 5070 Ti GDDR7 12GB | 16" QHD | RAM 32GB DDR5</p>
+          <div class="price-rating">
+            <span class="price"> Rp.29.999.000</span>
+          </div>
+        </div>
+
+        <!-- Laptop ThinkPad E14 Gen 6 -->
+        <div class="product-card discount">
+          <div class="image-slide-wrapper">
+            <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+            <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+          </div>
+          <h3>ASUS ROG ZEPHYRUS G14</h3>
+          <p>AMD Ryzen AI 9 HX 370 | 32GB RAM | 2TB SSD | 16" IPS 2.5K (2560 x 1600, WQXGA)</p>
+          <div class="price-rating">
+            <span class="price"> Rp.50.999.000</span>
+          </div>
+        </div>
+
+        <!-- Acer Nitro V15 -->
+        <div class="product-card discount">
+          <div class="image-slide-wrapper">
+            <img src="../assets/Images/ASUS TUF A14 FA401UU (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
+            <img src="../assets/Images/ASUS TUF A14 FA401UU (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
+          </div>
+          <h3>ASUS TUF A14 FA401UU</h3>
+          <p>Ryzen 7 8845HS |RTX 4050-6GB GDDR6 | 14″ FHD 2.5K (2560 x 1600, WQXGA), 165Hz</p>
+          <div class="price-rating">
+            <span class="price">Rp.21.999.000</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div v-else-if="error">
@@ -160,7 +159,7 @@ export default {
     return {
       product: null,
       error: null,
-      activeTab: 'description-tab'
+      activeTab: "description-tab",
     };
   },
   async created() {
@@ -181,10 +180,10 @@ export default {
           status: data.status,
           images: [data.image_1, data.image_2, data.image_3].filter(Boolean),
           buyLink: data.buy_link,
-          category: data.category ? data.category.split(',') : [],
+          category: data.category ? data.category.split(",") : [],
           qrCode: data.qr_code,
-          fullSpecs: data.description ? data.description.split('|') : [],
-          additionalInfo: "Garansi 2 tahun, Tersedia di semua cabang, Dukungan purna jual tersedia, dll."
+          fullSpecs: data.description ? data.description.split("|") : [],
+          additionalInfo: "Garansi 2 tahun, Tersedia di semua cabang, Dukungan purna jual tersedia, dll.",
         };
       }
     } catch (err) {
@@ -195,15 +194,14 @@ export default {
   methods: {
     formatPrice(value) {
       return parseInt(value).toLocaleString("id-ID");
-    }
-  }
+    },
+  },
 };
 </script>
 
-
 <style>
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   background: #fff;
@@ -226,7 +224,6 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
-  
 }
 
 .tab-content {
@@ -235,7 +232,6 @@ header {
 .tab-content.active {
   display: block;
 }
-
 
 header.scrolled {
   background-color: rgba(255, 255, 255, 0.7); /* semi transparan */
@@ -254,7 +250,6 @@ header.scrolled {
   transform: translateY(0);
 }
 
-
 .offcanvas {
   height: 100vh; /* Mengisi seluruh tinggi viewport */
   overflow-y: auto; /* Memungkinkan scroll vertikal jika konten melebihi tinggi */
@@ -268,7 +263,7 @@ header.scrolled {
   height: 100%;
   background: #fff;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease;
   z-index: 10;
 }
@@ -339,7 +334,7 @@ header.scrolled {
   border-radius: 5px;
 }
 
-.list{
+.list {
   background-color: transparent;
 }
 .logo {
@@ -361,7 +356,7 @@ nav ul li {
 
 nav ul li a:hover {
   color: rgb(0, 174, 255);
-  background-color: transparent; 
+  background-color: transparent;
   border-radius: 5px;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
@@ -403,14 +398,12 @@ nav a {
   color: rgba(0, 0, 0, 0.5);
 }
 
-
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 20px auto;
   padding-top: 5rem;
 }
-
 
 .breadcrumb {
   font-size: 14px;
@@ -482,7 +475,7 @@ nav a {
 
 .cart-buttons {
   margin-top: 20px;
-    transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .cart-buttons button {
@@ -550,11 +543,11 @@ nav a {
 }
 
 .product-card {
-   background: white;
+  background: white;
   padding: 15px;
   border-radius: 8px;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 .product-card:hover {
@@ -607,15 +600,13 @@ nav a {
   transition: transform 0.5s ease-in-out;
 }
 
-
 .image-slide-wrapper {
   position: relative;
   width: 280px;
   height: 200px;
   overflow: hidden;
 }
-g
-.product-img {
+g .product-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -624,7 +615,6 @@ g
   left: 0;
   transition: transform 0.5s ease-in-out;
 }
-
 
 .second-img {
   transform: translateX(100%);
@@ -649,7 +639,7 @@ g
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
-} 
+}
 
 .product-card {
   background: white;
@@ -658,9 +648,9 @@ g
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
-}    
+}
 
- .product-card:hover {
+.product-card:hover {
   transform: translateY(-5px);
 }
 
@@ -674,7 +664,7 @@ g
 .product-card h3 {
   font-size: 16px;
   margin: 10px 0 5px;
-} 
+}
 
 .product-card p {
   font-size: 14px;
@@ -690,6 +680,6 @@ g
 .logo-text {
   font-weight: bold;
   font-size: 18px;
-color:#000;
+  color: #000;
 }
 </style>
