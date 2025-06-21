@@ -2,12 +2,22 @@
 require_once '../auth/auth_check.php';
 require_once '../auth/db.php';
 
+$products = [];
+$bestSellers = [];
+$error = null;
+
 try {
     $stmt = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $products = [];
-    $error = "Gagal mengambil data produk: " . $e->getMessage();
+    $error = "Gagal mengambil data produk New Arrival: " . $e->getMessage();
+}
+
+try {
+    $stmt = $conn->query("SELECT * FROM best_seller ORDER BY created_at DESC");
+    $bestSellers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error .= "<br>Gagal mengambil data produk Best Seller: " . $e->getMessage();
 }
 ?>
 <!DOCTYPE html>
@@ -32,12 +42,13 @@ try {
         <div class="message success">Produk berhasil dihapus.</div>
     <?php endif; ?>
 
-    <?php if (isset($error)): ?>
-        <div class="errors"><?php echo htmlspecialchars($error); ?></div>
+    <?php if ($error): ?>
+        <div class="errors"><?php echo $error; ?></div>
     <?php endif; ?>
 
     <p><a href="create_product.php" class="btn">Tambah Produk Baru</a></p>
 
+    <h3>Produk New Arrival</h3>
     <?php if (count($products) > 0): ?>
         <table>
             <thead>
@@ -69,7 +80,43 @@ try {
             </tbody>
         </table>
     <?php else: ?>
-        <p>Belum ada produk.</p>
+        <p>Belum ada produk New Arrival.</p>
+    <?php endif; ?>
+
+    <h3>Produk Best Seller</h3>
+    <?php if (count($bestSellers) > 0): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Judul</th>
+                    <th>Slug</th>
+                    <th>Harga</th>
+                    <th>Status</th>
+                    <th>Dibuat</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($bestSellers as $p): ?>
+                    <tr>
+                        <td><?php echo $p['id']; ?></td>
+                        <td><?php echo htmlspecialchars($p['title']); ?></td>
+                        <td><?php echo htmlspecialchars($p['slug']); ?></td>
+                        <td>Rp<?php echo number_format($p['price'], 0, ',', '.'); ?></td>
+                        <td><?php echo $p['status']; ?></td>
+                        <td><?php echo $p['created_at']; ?></td>
+                        <td>
+                            <!-- Ganti ID di URL jika kamu punya file edit/delete khusus -->
+                            <a href="edit_product.php?id=<?php echo $p['id']; ?>" class="btn-edit">Edit</a>
+                            <a href="delete_product.php?id=<?php echo $p['id']; ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Belum ada produk Best Seller.</p>
     <?php endif; ?>
 </div>
 </body>
