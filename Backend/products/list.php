@@ -72,7 +72,7 @@ try {
                         <td><?php echo $p['status']; ?></td>
                         <td><?php echo $p['created_at']; ?></td>
                         <td>
-                            <a href="edit_product.php?id=<?php echo $p['id']; ?>" class="btn-edit">Edit</a>
+                            <a href="edit_product.php?id=<?php echo $p['id']; ?>&type=products" class="btn-edit">Edit</a>
                             <a href="delete_product.php?id=<?php echo $p['id']; ?>&type=product" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</a>
                         </td>
                     </tr>
@@ -108,7 +108,7 @@ try {
                         <td><?php echo $p['created_at']; ?></td>
                         <td>
                             <!-- Ganti ID di URL jika kamu punya file edit/delete khusus -->
-                            <a href="edit_product.php?id=<?php echo $p['id']; ?>" class="btn-edit">Edit</a>
+                            <a href="edit_product.php?slug=<?= urlencode($p['slug']) ?>&type=best_seller" class="btn-edit">Edit</a>
                            <a href="delete_product.php?slug=<?php echo urlencode($p['slug']); ?>&type=best_seller" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk best seller ini?')">Hapus</a>
                         </td>
                     </tr>

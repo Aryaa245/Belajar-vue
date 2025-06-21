@@ -2,16 +2,33 @@
 require_once '../auth/auth_check.php';
 require_once '../auth/db.php';
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    die("ID produk tidak valid.");
-}
+// Validasi tipe
+$type = $_GET['type'] ?? 'products';
+$table = $type === 'best_seller' ? 'best_seller' : 'products';
 
-$id = $_GET['id'];
+$errors = [];
+$success = false;
+$product = null;
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->execute([$id]);
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($type === 'best_seller') {
+        if (!isset($_GET['slug']) || empty($_GET['slug'])) {
+            die("Slug produk tidak valid.");
+        }
+        $slug = $_GET['slug'];
+        $stmt = $conn->prepare("SELECT * FROM best_seller WHERE slug = ?");
+        $stmt->execute([$slug]);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        $id = $product['id'] ?? null;
+    } else {
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            die("ID produk tidak valid.");
+        }
+        $id = $_GET['id'];
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt->execute([$id]);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     if (!$product) {
         die("Produk tidak ditemukan.");
@@ -20,9 +37,7 @@ try {
     die("Gagal mengambil data produk: " . $e->getMessage());
 }
 
-$errors = [];
-$success = false;
-
+// Jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $specs = $_POST['specs'];
@@ -34,15 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
 
     try {
-        $stmt = $conn->prepare("UPDATE products SET title = ?, specs = ?, price = ?, old_price = ?, status = ?, category = ?, buy_link = ?, description = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE $table SET title = ?, specs = ?, price = ?, old_price = ?, status = ?, category = ?, buy_link = ?, description = ? WHERE id = ?");
         $stmt->execute([$title, $specs, $price, $old_price, $status, $category, $buy_link, $description, $id]);
         $success = true;
 
-        // Refresh data setelah update
-        $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+        // Refresh data
+        $stmt = $conn->prepare("SELECT * FROM $table WHERE id = ?");
         $stmt->execute([$id]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
     } catch (PDOException $e) {
         $errors[] = "Gagal mengupdate produk: " . $e->getMessage();
     }
@@ -100,8 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="container">
-  <h2>Edit Produk</h2>
-  <a href="list.php">&larr; Kembali ke daftar produk</a>
+  <h2>Edit Produk (<?= htmlspecialchars($type) ?>)</h2>
+  <a href="list.php?type=<?= urlencode($type) ?>">&larr; Kembali ke daftar produk</a>
 
   <?php if ($success): ?>
     <div class="message success"><p>Produk berhasil diperbarui.</p></div>
@@ -117,31 +131,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <form method="post">
     <label>Judul Produk:
-      <input type="text" name="title" value="<?php echo htmlspecialchars($product['title']); ?>" required>
+      <input type="text" name="title" value="<?= htmlspecialchars($product['title']) ?>" required>
     </label>
     <label>Spesifikasi Singkat:
-      <input type="text" name="specs" value="<?php echo htmlspecialchars($product['specs']); ?>" required>
+      <input type="text" name="specs" value="<?= htmlspecialchars($product['specs']) ?>" required>
     </label>
     <label>Harga:
-      <input type="number" name="price" value="<?php echo htmlspecialchars($product['price']); ?>" required>
+      <input type="number" name="price" value="<?= htmlspecialchars($product['price']) ?>" required>
     </label>
     <label>Harga Lama:
-      <input type="number" name="old_price" value="<?php echo htmlspecialchars($product['old_price']); ?>">
+      <input type="number" name="old_price" value="<?= htmlspecialchars($product['old_price']) ?>">
     </label>
     <label>Status:
       <select name="status">
-        <option value="In Stock" <?php if ($product['status'] === 'In Stock') echo 'selected'; ?>>In Stock</option>
-        <option value="Out of Stock" <?php if ($product['status'] === 'Out of Stock') echo 'selected'; ?>>Out of Stock</option>
+        <option value="In Stock" <?= $product['status'] === 'In Stock' ? 'selected' : '' ?>>In Stock</option>
+        <option value="Out of Stock" <?= $product['status'] === 'Out of Stock' ? 'selected' : '' ?>>Out of Stock</option>
       </select>
     </label>
     <label>Kategori:
-      <input type="text" name="category" value="<?php echo htmlspecialchars($product['category']); ?>">
+      <input type="text" name="category" value="<?= htmlspecialchars($product['category']) ?>">
     </label>
     <label>Link Pembelian:
-      <input type="text" name="buy_link" value="<?php echo htmlspecialchars($product['buy_link']); ?>">
+      <input type="text" name="buy_link" value="<?= htmlspecialchars($product['buy_link']) ?>">
     </label>
     <label>Deskripsi Panjang:
-      <textarea name="description" rows="5"><?php echo htmlspecialchars($product['description']); ?></textarea>
+      <textarea name="description" rows="5"><?= htmlspecialchars($product['description']) ?></textarea>
     </label>
     <button type="submit">Simpan Perubahan</button>
   </form>
