@@ -52,13 +52,13 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="nav-item nav-underline">
-              <a class="nav-link" :class="{ active: activeTab === 'description-tab' }" @click.prevent="activeTab = 'description-tab'">Description</a>
+              <a href="#" class="nav-link" :class="{ active: activeTab === 'description-tab' }" @click.prevent="activeTab = 'description-tab'">Description</a>
             </li>
             <li class="nav-item nav-underline">
-              <a class="nav-link" :class="{ active: activeTab === 'additional-tab' }" @click.prevent="activeTab = 'additional-tab'">Additional information</a>
+              <a href="#" class="nav-link" :class="{ active: activeTab === 'additional-tab' }" @click.prevent="activeTab = 'additional-tab'">Additional information</a>
             </li>
             <li class="nav-item nav-underline">
-              <a class="nav-link" :class="{ active: activeTab === 'qr-tab' }" @click.prevent="activeTab = 'qr-tab'">QR Code</a>
+              <a href="#" class="nav-link" :class="{ active: activeTab === 'qr-tab' }" @click.prevent="activeTab = 'qr-tab'">QR Code</a>
             </li>
           </ul>
         </div>
@@ -91,58 +91,21 @@
       </div>
     </div>
 
-    <section class="related-products">
+    <section class="related-products" v-if="related && related.length">
       <h2 style="text-decoration: underline">Related Products</h2>
       <div class="product-grid">
-        <div class="product-card discount">
-          <div class="image-slide-wrapper">
-            <img src="../assets/Images/ASUS Gaming V16 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-            <img src="../assets/Images/ASUS Gaming V16 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-          </div>
-          <h3>ASUS Gaming V16</h3>
-          <p>Intel Core i5 | 16GB DDR5 SO-DIMM | 512GB M.2 NVMe | 16" WUXGA</p>
-          <div class="price-rating">
-            <span class="price"> Rp 14.519.000​</span>
-          </div>
-        </div>
-
-        <!-- ASUS ROG Scar G532LWS-I97SD6T-->
-        <div class="product-card discount">
-          <div class="image-slide-wrapper">
-            <img src="../assets/Images/MSI VECTOR 16HX AI (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-            <img src="../assets/Images/MSI VECTOR 16HX AI (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-          </div>
-          <h3>MSI VECTOR 16HX AI</h3>
-          <p>Intel Core Ultra 7-255HX| RTX 5070 Ti GDDR7 12GB | 16" QHD | RAM 32GB DDR5</p>
-          <div class="price-rating">
-            <span class="price"> Rp.29.999.000</span>
-          </div>
-        </div>
-
-        <!-- Laptop ThinkPad E14 Gen 6 -->
-        <div class="product-card discount">
-          <div class="image-slide-wrapper">
-            <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-            <img src="../assets/Images/ASUS ROG ZEPHYRUS G14 (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-          </div>
-          <h3>ASUS ROG ZEPHYRUS G14</h3>
-          <p>AMD Ryzen AI 9 HX 370 | 32GB RAM | 2TB SSD | 16" IPS 2.5K (2560 x 1600, WQXGA)</p>
-          <div class="price-rating">
-            <span class="price"> Rp.50.999.000</span>
-          </div>
-        </div>
-
-        <!-- Acer Nitro V15 -->
-        <div class="product-card discount">
-          <div class="image-slide-wrapper">
-            <img src="../assets/Images/ASUS TUF A14 FA401UU (1).jpg" alt="Legion 5 default" class="product-img first-img" style="height: 200px; width: 280px" />
-            <img src="../assets/Images/ASUS TUF A14 FA401UU (2).jpg" alt="Legion 5 hover" class="product-img second-img" />
-          </div>
-          <h3>ASUS TUF A14 FA401UU</h3>
-          <p>Ryzen 7 8845HS |RTX 4050-6GB GDDR6 | 14″ FHD 2.5K (2560 x 1600, WQXGA), 165Hz</p>
-          <div class="price-rating">
-            <span class="price">Rp.21.999.000</span>
-          </div>
+        <div v-for="product in related" :key="product.id" class="product-card discount">
+          <a :href="`/product/${product.slug}`" style="text-decoration: none; color: inherit">
+            <div class="image-slide-wrapper">
+              <img :src="product.image_1" :alt="product.title + ' default'" class="product-img first-img" style="height: 200px; width: 280px" />
+              <img :src="product.image_2 || product.image_1" :alt="product.title + ' hover'" class="product-img second-img" style="height: 200px; width: 280px" />
+            </div>
+            <h3>{{ product.title }}</h3>
+            <p>Status: {{ product.status || "Tersedia" }}</p>
+            <div class="price-rating">
+              <span class="price">Rp {{ formatPrice(product.price) }}</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -158,6 +121,7 @@ export default {
   data() {
     return {
       product: null,
+      related: [],
       error: null,
       activeTab: "description-tab",
     };
@@ -171,20 +135,33 @@ export default {
       if (data.error) {
         this.error = data.error;
       } else {
+        const p = data.product;
+
         this.product = {
-          id: data.slug,
-          title: data.title,
-          specs: data.specs,
-          price: parseInt(data.price),
-          oldPrice: parseInt(data.old_price),
-          status: data.status,
-          images: [data.image_1, data.image_2, data.image_3].filter(Boolean),
-          buyLink: data.buy_link,
-          category: data.category ? data.category.split(",") : [],
-          qrCode: data.qr_code,
-          fullSpecs: data.description ? data.description.split("|") : [],
+          id: p.slug,
+          title: p.title,
+          specs: p.specs,
+          price: parseInt(p.price),
+          oldPrice: parseInt(p.old_price),
+          status: p.status,
+          images: [p.image_1, p.image_2, p.image_3].filter(Boolean),
+          buyLink: p.buy_link,
+          category: p.category ? p.category.split(",") : [],
+          qrCode: p.qr_code,
+          fullSpecs: p.description ? p.description.split("|") : [],
           additionalInfo: "Garansi 2 tahun, Tersedia di semua cabang, Dukungan purna jual tersedia, dll.",
         };
+
+        // Ambil related products
+        this.related = data.related.map((r) => ({
+          id: r.slug,
+          title: r.title,
+          price: parseInt(r.price),
+          image_1: r.image_1,
+          image_2: r.image_2,
+          status: r.status,
+          slug: r.slug,
+        }));
       }
     } catch (err) {
       this.error = "Gagal mengambil data produk.";
