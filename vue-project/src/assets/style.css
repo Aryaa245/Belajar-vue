@@ -763,3 +763,8 @@ h2 {
   background-color: #e2e6ea;
   color: black;
 }  
+
+.menu-item {
+  color: black !important;
+  text-decoration: none !important;
+}

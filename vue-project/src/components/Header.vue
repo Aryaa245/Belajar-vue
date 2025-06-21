@@ -1,73 +1,79 @@
 <template>
-    <header>
-      <button class="btn list" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" 
-      aria-controls="offcanvasWithBothOptions"><i class="bi bi-list fs-4"></i></button>
-     
+  <header>
+    <button class="btn list" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" 
+    aria-controls="offcanvasWithBothOptions"><i class="bi bi-list fs-4"></i></button>
 
-
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"> <div class="logo-container">
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel"> 
+          <div class="logo-container">
             <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img">
             <span class="logo-text">Technologia</span>
-          </div></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-          <div class="menu-tabs">
-            <div class="menu-tab active" onclick="setTab('menu')">Menu</div>
-            <div class="menu-tab" onclick="setTab('categories')">Categories</div>
           </div>
-        <!-- Menu Burger -->
-          <div class="menu-list" id="menuTab">
-            <div class="menu-item">Home</div>
-            <div class="menu-item">About Us</div>
-            <div class="menu-item" onclick="toggleSubmenu('laptopkita')">Technologia<span>+</span></div>
-            <div class="submenu" id="submenu-laptopkita">
-              <div>- Lenovo</div>
-              <div>- MacBook</div>
-              <div>- DELL</div>
-              <div>- MSI</div>
-              <div>- HP</div>
-            </div>
-            <div class="menu-item highlight">Our Marketplace</div>
-            <div class="menu-item">Update</div>
-            <div class="menu-item">Pricelist</div>
-            <div class="menu-item">All Promo</div>
-            <div class="menu-item" onclick="toggleSubmenu('info')">More Info <span>+</span></div>
-            <div class="submenu" id="submenu-info">
-              <div>- FAQ</div>
-              <div>- Contact</div>
-            </div>
-          </div>
-        
-          <div class="menu-list" id="categoriesTab" style="display: none;">
-            <div class="menu-item">Laptop</div>
-            <div class="menu-item">Accessories</div>
-            <div class="menu-item">Networking</div>
-          </div>
-        </div>
-
-        <div class="logo-container">
-          <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img">
-          <span class="logo-text">Technologia</span>
-        </div>
-      <div class="search-container">
-        <i class="bi bi-search"></i>
-        <input type="text" class="search" placeholder="Search" id="searchInput" onkeyup="filterMenu()"/>
-
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="navbare">
-        <nav>
-          <ul>
-            <li><a href="../HomePage#carouselExample">Home</a></li>
-            <li><a href="../HomePage#about-us">About</a></li>
-            <li><a href="../HomePage#categories">Category</a></li>
-            <li><a href="../HomePage#all-products">Products</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+
+      <div class="menu-tabs">
+        <div class="menu-tab active" @click="setTab('menu')">Menu</div>
+        <div class="menu-tab" @click="setTab('categories')">Categories</div>
       </div>
-    </header>
+
+      <!-- Menu Burger -->
+      <div class="menu-list" id="menuTab">
+        <a href="HomePage" class="menu-item">Home</a>
+        <div class="menu-item">About Us</div>
+        <div class="menu-item" onclick="toggleSubmenu('laptopkita')">Technologia<span>+</span></div>
+        <div class="submenu" id="submenu-laptopkita">
+          <div>- Lenovo</div>
+          <div>- MacBook</div>
+          <div>- DELL</div>
+          <div>- MSI</div>
+          <div>- HP</div>
+        </div>
+        <div class="menu-item highlight">Our Marketplace</div>
+        <div class="menu-item">Update</div>
+        <div class="menu-item">Pricelist</div>
+        <div class="menu-item">All Promo</div>
+        <div class="menu-item" onclick="toggleSubmenu('info')">More Info <span>+</span></div>
+        <div class="submenu" id="submenu-info">
+          <div>- FAQ</div>
+          <div>- Contact</div>
+        </div>
+      </div>
+
+      
+
+      <!-- Kategori Baru -->
+      <div class="menu-list" id="categoriesTab" style="display: none;">
+        <a  href="Workstastion" class="menu-item">Workstation</a>
+        <a href="Business" class="menu-item">Business</a>
+        <a href="Categories" class="menu-item">Gaming</a>
+        <a href="ViedoEditing" class="menu-item">Video Editing</a>
+        <a href="Students" class="menu-item">Students</a>
+      </div>
+    </div>
+
+    <div class="logo-container">
+      <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img">
+      <span class="logo-text">Technologia</span>
+    </div>
+    <div class="search-container">
+      <i class="bi bi-search"></i>
+      <input type="text" class="search" placeholder="Search" id="searchInput" onkeyup="filterMenu()"/>
+    </div>
+    <div class="navbare">
+      <nav>
+        <ul>
+          <li><a href="../HomePage#carouselExample">Home</a></li>
+          <li><a href="../HomePage#about-us">About</a></li>
+          <li><a href="../HomePage#categories">Category</a></li>
+          <li><a href="../HomePage#all-products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -83,7 +89,6 @@ export default {
       let found = false;
 
       productTitles.forEach(title => {
-        // Hapus highlight sebelumnya
         title.classList.remove('highlight');
 
         if (query && title.textContent.toLowerCase().includes(query)) {
@@ -95,6 +100,24 @@ export default {
         }
       });
     });
+  },
+  methods: {
+    setTab(tab) {
+      const menuTab = document.getElementById('menuTab');
+      const categoriesTab = document.getElementById('categoriesTab');
+
+      document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
+
+      if (tab === 'menu') {
+        menuTab.style.display = '';
+        categoriesTab.style.display = 'none';
+        document.querySelector('.menu-tab:nth-child(1)').classList.add('active');
+      } else {
+        menuTab.style.display = 'none';
+        categoriesTab.style.display = '';
+        document.querySelector('.menu-tab:nth-child(2)').classList.add('active');
+      }
+    }
   }
 };
 
@@ -120,10 +143,9 @@ function filterMenu() {
 </script>
 
 <style>
-  .product-title.highlight {
+.product-title.highlight {
   background-color: yellow;
   padding: 5px;
   border-radius: 4px;
 }
-
 </style>
