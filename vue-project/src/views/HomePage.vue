@@ -378,58 +378,55 @@ export default {
 </script>
 
 <style>
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  margin-bottom: 0; /* tambahkan ini */
-}
-
-.image-slide-wrapper {
-  position: relative;
-  width: 280px;
-  height: 200px;
+.product-card {
+  width: 100%;
   overflow: hidden;
   border-radius: 8px;
 }
 
-.product-card {
-  width: 280px;
-  height: auto;
+.image-slide-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 70%; /* kotak tetap */
   overflow: hidden;
+  border-radius: 8px;
+  background: #f9f9f9;
 }
 
 .product-img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.4s ease-in-out;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-/* Saat hover, geser ke dalam container */
+/* Hover effect */
 .first-img {
   z-index: 2;
+  transform: translate(-50%, -50%) translateX(0);
 }
 
 .second-img {
   z-index: 1;
-  transform: translateX(100%);
+  transform: translate(-50%, -50%) translateX(100%);
 }
 
 .product-card:hover .first-img {
-  transform: translateX(-100%);
+  transform: translate(-50%, -50%) translateX(-100%);
 }
 
 .product-card:hover .second-img {
-  transform: translateX(0%);
-}
-
-.tab-content-container {
-  padding-bottom: 0; /* hilangkan padding bawah jika ada */
-  margin-bottom: 0;
+  transform: translate(-50%, -50%) translateX(0);
 }
 </style>
