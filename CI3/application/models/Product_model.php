@@ -48,4 +48,27 @@ class Product_model extends CI_Model {
         $this->db->order_by('created_at', 'DESC');
         return $this->db->get('on_sale')->result_array();
     }
+
+
+	public function get_product_by_id($id)
+	{
+		$query = $this->db->get_where('products', ['id' => $id]);
+		return $query->row_array();
+	}
+
+	public function get_best_seller_by_id($id) {
+    return $this->db->get_where('best_seller', ['id' => $id])->row_array();
+}
+
+public function update_best_seller($id, $data) {
+    $this->db->where('id', $id);
+    return $this->db->update('best_seller', $data);
+}
+
+public function delete_best_seller($id) {
+    $this->db->where('id', $id);
+    return $this->db->delete('best_seller');
+}
+
+
 }

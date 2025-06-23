@@ -51,8 +51,8 @@
             <td><?php echo $p['status']; ?></td>
             <td><?php echo $p['created_at']; ?></td>
             <td>
-              <a href="<?php echo site_url('products/edit/' . $p['id'] . '?type=products'); ?>" class="btn-edit">Edit</a>
-              <a href="<?php echo site_url('products/delete/' . $p['id'] . '?type=products'); ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</a>
+              <a href="<?php echo site_url('index.php/products/edit/' . $p['id'] . '?type=products'); ?>" class="btn-edit">Edit</a>
+              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=products'); ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk ini?')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -87,8 +87,9 @@
             <td><?php echo $p['status']; ?></td>
             <td><?php echo $p['created_at']; ?></td>
             <td>
-              <a href="<?php echo site_url('products/edit/' . urlencode($p['slug']) . '?type=best_seller'); ?>" class="btn-edit">Edit</a>
-              <a href="<?php echo site_url('products/delete/' . urlencode($p['slug']) . '?type=best_seller'); ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk best seller ini?')">Hapus</a>
+              <a href="<?php echo site_url('index.php/products/edit_best_seller/' . $p['id']); ?>" class="btn-edit">Edit</a>
+              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=best_seller'); ?>"
+ class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk best seller ini?')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -123,8 +124,8 @@
             <td><?php echo $p['status']; ?></td>
             <td><?php echo $p['created_at']; ?></td>
             <td>
-              <a href="<?php echo site_url('products/edit/' . urlencode($p['slug']) . '?type=on_sale'); ?>" class="btn-edit">Edit</a>
-              <a href="<?php echo site_url('products/delete/' . urlencode($p['slug']) . '?type=on_sale'); ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
+              <a href="<?php echo site_url('index.html/products/edit/' . $p['id'] . '?type=best_seller'); ?>" class="btn-edit">Edit</a>
+              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=best_seller'); ?>"  class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>
