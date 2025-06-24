@@ -212,3 +212,433 @@ table td a {
 table td a:last-child {
     margin-right: 0;
 }
+
+body.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #4E71FF;
+}
+
+/* Kotak form login */
+.container-login {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Judul */
+.container-login h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Pesan sukses & error */
+.success, .errors {
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.success {
+    background: #e0f7e0;
+    border: 1px solid #7fd47f;
+    color: #2a7d2a;
+}
+.errors {
+    background: #fde8e8;
+    border: 1px solid #f1b8b8;
+    color: #b22d2d;
+}
+
+/* Input & label */
+.container-login label {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+.container-login input {
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border 0.2s ease;
+}
+.container-login input:focus {
+    border-color: #6c63ff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+/* Tombol login */
+.container-login button {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    background: #6c63ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.container-login button:hover {
+    background: #584fe0;
+}
+
+
+body.dashboard {
+    background: #4E71FF;
+    padding: 1rem;
+    min-height: 100vh;
+}
+
+/* Container utama */
+.container-dashboard {
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Header nav */
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eaeaea;
+}
+.header-nav h2 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.header-nav div {
+    font-size: 0.9rem;
+}
+.header-nav a {
+    color: #3b82f6;
+    text-decoration: none;
+    padding: 0 0.25rem;
+    transition: color 0.2s;
+}
+.header-nav a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* Message info */
+.message {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    animation: slideDown 0.4s ease;
+}
+.message.success {
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+}
+.message.error {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+
+/* Tombol utama */
+.btn {
+    padding: 0.6rem 1rem;
+    background: #6366f1;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(99,102,241,0.3);
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-bottom: 1.2rem;
+}
+.btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-size: 0.9rem;
+}
+table thead {
+    background: #6366f1;
+    color: #ffffff;
+}
+table th, table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+table tr:hover {
+    background: #f9fafb;
+    transition: background 0.2s ease;
+}
+table th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Tombol Edit & Hapus */
+.btn-edit, .btn-delete {
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.8rem;
+    transition: background 0.3s ease;
+    margin-right: 0.3rem;
+}
+.btn-edit {
+    background: #22c55e;
+}
+.btn-edit:hover {
+    background: #16a34a;
+}
+.btn-delete {
+    background: #ef4444;
+}
+.btn-delete:hover {
+    background: #dc2626;
+}
+
+body.manage {
+    background: #4E71FF;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Container utama */
+.container-manage {
+    background: #fff;
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Header navigasi */
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-nav h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #3b3b3b;
+}
+
+.header-nav div {
+    font-size: 0.9rem;
+}
+
+.header-nav a {
+    color: #6c63ff;
+    text-decoration: none;
+    margin-left: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.header-nav a:hover {
+    color: #4a47d0;
+    text-decoration: underline;
+}
+
+/* Pesan sukses */
+.message.success {
+    background-color: #e6f4ea;
+    border: 1px solid #91c788;
+    color: #3a6a35;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Pesan error */
+.errors {
+    background-color: #fdecea;
+    border: 1px solid #e2968a;
+    color: #a83c2f;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Tombol tambah produk */
+.btn {
+    display: inline-block;
+    background-color: #6c63ff;
+    color: #fff;
+    padding: 0.6rem 1.3rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 3px 10px rgba(108,99,255,0.3);
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+
+.btn:hover {
+    background-color: #584fdb;
+    transform: translateY(-2px);
+}
+
+/* Headings for product sections */
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #4a47d0;
+    font-weight: 700;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.9rem;
+    background-color: #fafafa;
+}
+
+thead {
+    background-color: #6c63ff;
+    color: white;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eaeaea;
+    text-align: left;
+}
+
+tbody tr:hover {
+    background-color: #e8e8ff;
+    cursor: pointer;
+}
+
+/* Aksi tombol edit dan hapus */
+.btn-edit, .btn-delete {
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+    text-decoration: none;
+    margin-right: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #22c55e; /* hijau */
+}
+
+.btn-edit:hover {
+    background-color: #16a34a;
+}
+
+.btn-delete {
+    background-color: #ef4444; /* merah */
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
+}
+
+/* Animasi fadeIn container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    tbody td {
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    tbody td::before {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        white-space: nowrap;
+        font-weight: 600;
+        content: attr(data-label);
+        color: #6c63ff;
+        text-align: left;
+    }
+}

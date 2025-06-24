@@ -6,8 +6,8 @@
   <title>Manajemen Produk</title>
   <link rel="stylesheet" href="<?php echo base_url('CSS/style.css'); ?>">
 </head>
-<body>
-<div class="container">
+<body class ="manage">
+<div class="container-manage">
   <div class="header-nav">
     <h2>Manajemen Produk</h2>
     <div>
@@ -125,8 +125,8 @@
             <td><?php echo $p['status']; ?></td>
             <td><?php echo $p['created_at']; ?></td>
             <td>
-              <a href="<?php echo site_url('index.php/products/edit_on_sale/' . $p['id'] . '?type=on_sale'); ?>" class="btn-edit">Edit</a>
-              <a href="<?php echo site_url('index.php/products/delete_on_sale/' . $p['id'] . '?type=on_sale'); ?>"  class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
+              <a href="<?php echo site_url('index.html/products/edit/' . $p['id'] . '?type=best_seller'); ?>" class="btn-edit">Edit</a>
+              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=best_seller'); ?>"  class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>

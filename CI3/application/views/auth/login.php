@@ -5,8 +5,8 @@
     <title>Login User</title>
     <link rel="stylesheet" href="<?php echo base_url('CSS/style.css'); ?>">
 </head>
-<body>
-<div class="container">
+<body class ="login-page">
+<div class="container-login">
     <h2>Login User</h2>
 
     <?php if ($success_message): ?>
