@@ -228,8 +228,6 @@
       </div>
     </div>
 
-  
-    <!-- Profil -->
     <section class="hero">
       <div class="container py-5">
         <div class="header-center">

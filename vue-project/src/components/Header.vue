@@ -19,32 +19,21 @@
         <div class="menu-tab" @click="setTab('categories')">Categories</div>
       </div>
 
-      <!-- Menu Burger -->
       <div class="menu-list" id="menuTab">
         <a href="HomePage" class="menu-item">Home</a>
-        <div class="menu-item">About Us</div>
-        <div class="menu-item" onclick="toggleSubmenu('laptopkita')">Technologia<span>+</span></div>
-        <div class="submenu" id="submenu-laptopkita">
-          <div>- Lenovo</div>
-          <div>- MacBook</div>
-          <div>- DELL</div>
-          <div>- MSI</div>
-          <div>- HP</div>
-        </div>
-        <div class="menu-item highlight">Our Marketplace</div>
-        <div class="menu-item">Update</div>
-        <div class="menu-item">Pricelist</div>
-        <div class="menu-item">All Promo</div>
-        <div class="menu-item" onclick="toggleSubmenu('info')">More Info <span>+</span></div>
-        <div class="submenu" id="submenu-info">
-          <div>- FAQ</div>
-          <div>- Contact</div>
-        </div>
+  <div class="menu-item" @click="toggleSubmenu('about')">Member Profil<span>+</span></div>
+  <div class="submenu" v-show="activeSubmenu === 'about'">
+    <div class="submenu-item" @click="goToProfile('danu')">Rifky Danu Asmoro</div>
+    <div class="submenu-item" @click="goToProfile('baskara')">I Mada Baskara Saccid Ananda</div>
+    <div class="submenu-item" @click="goToProfile('vianda')">Vianda Retnaningtiyas Purabandari Karetji</div>
+    <div class="submenu-item" @click="goToProfile('farhan')">Farhan Ardiansyah</div>
+    <div class="submenu-item" @click="goToProfile('arya')">Stefanus Arya Bayu Samudra Batona</div>
+  </div>
+        
+   <a href="contact" class="menu-item">About us</a>
       </div>
+    
 
-      
-
-      <!-- Kategori Baru -->
       <div class="menu-list" id="categoriesTab" style="display: none;">
         <a  href="Workstastion" class="menu-item">Workstation</a>
         <a href="Business" class="menu-item">Business</a>
@@ -69,7 +58,7 @@
           <li><a href="../HomePage#about-us">About</a></li>
           <li><a href="../HomePage#categories">Category</a></li>
           <li><a href="../HomePage#all-products">Products</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="../HomePage#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -79,6 +68,13 @@
 <script>
 export default {
   name: 'AppHeader',
+
+  data() {
+    return {
+      activeSubmenu: null,
+    };
+  },
+
   mounted() {
     const searchInput = document.getElementById('searchInput');
 
@@ -101,6 +97,7 @@ export default {
       });
     });
   },
+
   methods: {
     setTab(tab) {
       const menuTab = document.getElementById('menuTab');
@@ -117,7 +114,16 @@ export default {
         categoriesTab.style.display = '';
         document.querySelector('.menu-tab:nth-child(2)').classList.add('active');
       }
-    }
+    },
+
+    toggleSubmenu(menu) {
+      this.activeSubmenu = this.activeSubmenu === menu ? null : menu;
+    },
+
+goToProfile(name) {
+  this.$router.push(`/Profil_${name}`);
+}
+
   }
 };
 
@@ -130,6 +136,7 @@ window.addEventListener('scroll', function () {
   }
 });
 
+// Menu filtering
 function filterMenu() {
   const input = document.getElementById('searchInput');
   const filter = input.value.toLowerCase();
@@ -142,6 +149,7 @@ function filterMenu() {
 }
 </script>
 
+
 <style>
 .product-title.highlight {
   background-color: yellow;
@@ -149,3 +157,19 @@ function filterMenu() {
   border-radius: 4px;
 }
 </style>
+
+<style scoped>
+
+.submenu {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-item {
+  cursor: pointer;
+  padding: 6px 15px;
+}
+
+</style>
+
