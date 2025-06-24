@@ -83,8 +83,24 @@
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
+  
 
   <form method="post" enctype="multipart/form-data" action="<?php echo site_url('index.php/products/create_form'); ?>" class="form-container">
+  <div class="form-group">
+  <label>
+    <input type="checkbox" name="is_best_seller" value="1">
+    Tambahkan ke Best Seller
+  </label>
+</div>
+
+<div class="form-group">
+  <label>
+    <input type="checkbox" name="is_on_sale" value="1">
+    Tambahkan ke On Sale
+  </label>
+</div>
+
+  
   <div class="form-group">
     <label>Slug/ID Produk:</label>
     <input type="text" name="slug" required>

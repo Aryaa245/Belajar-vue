@@ -42,54 +42,79 @@ class Products extends CI_Controller {
         $this->load->view('products_list', ['products' => $products]);
     }
 
-    public function create_form() {
-        $errors = [];
-        $success = false;
+public function create_form() {
+    $errors = [];
+    $success = false;
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $slug        = $this->input->post('slug');
-            $title       = $this->input->post('title');
-            $specs       = $this->input->post('specs');
-            $price       = $this->input->post('price');
-            $old_price   = $this->input->post('old_price');
-            $status      = $this->input->post('status');
-            $category    = $this->input->post('category');
-            $buy_link    = $this->input->post('buy_link');
-            $description = $this->input->post('description');
-            $upload_dir  = realpath(dirname(APPPATH) . '/../vue-project/public/Images/') . '/';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $slug        = $this->input->post('slug');
+        $title       = $this->input->post('title');
+        $specs       = $this->input->post('specs');
+        $price       = $this->input->post('price');
+        $old_price   = $this->input->post('old_price');
+        $status      = $this->input->post('status');
+        $category    = $this->input->post('category');
+        $buy_link    = $this->input->post('buy_link');
+        $description = $this->input->post('description');
+        $upload_dir  = realpath(dirname(APPPATH) . '/../vue-project/public/Images/') . '/';
 
-            $image_1 = $this->_upload_file('image_1_file', $upload_dir, $errors, 'Gambar 1');
-            $image_2 = $this->_upload_file('image_2_file', $upload_dir, $errors, 'Gambar 2');
-            $image_3 = $this->_upload_file('image_3_file', $upload_dir, $errors, 'Gambar 3');
-            $qr_code = $this->_upload_file('qr_code_file', $upload_dir, $errors, 'QR Code');
+        $image_1 = $this->_upload_file('image_1_file', $upload_dir, $errors, 'Gambar 1');
+        $image_2 = $this->_upload_file('image_2_file', $upload_dir, $errors, 'Gambar 2');
+        $image_3 = $this->_upload_file('image_3_file', $upload_dir, $errors, 'Gambar 3');
+        $qr_code = $this->_upload_file('qr_code_file', $upload_dir, $errors, 'QR Code');
 
-            if (empty($image_1)) $errors[] = "Gambar 1 wajib diupload.";
-
-            if (empty($errors)) {
-                $this->db->insert('products', [
-                    'slug'        => $slug,
-                    'title'       => $title,
-                    'specs'       => $specs,
-                    'price'       => $price,
-                    'old_price'   => $old_price,
-                    'status'      => $status,
-                    'image_1'     => $image_1,
-                    'image_2'     => $image_2,
-                    'image_3'     => $image_3,
-                    'category'    => $category,
-                    'buy_link'    => $buy_link,
-                    'description' => $description,
-                    'qr_code'     => $qr_code
-                ]);
-                $success = true;
-            }
+        if (empty($image_1)) {
+            $errors[] = "Gambar 1 wajib diupload.";
         }
 
-        $this->load->view('products/create_form', [
-            'errors'  => $errors,
-            'success' => $success
-        ]);
+        if (empty($errors)) {
+            $data = [
+                'slug'        => $slug,
+                'title'       => $title,
+                'specs'       => $specs,
+                'price'       => $price,
+                'old_price'   => $old_price,
+                'status'      => $status,
+                'image_1'     => $image_1,
+                'image_2'     => $image_2,
+                'image_3'     => $image_3,
+                'category'    => $category,
+                'buy_link'    => $buy_link,
+                'description' => $description,
+                'qr_code'     => $qr_code
+            ];
+
+            // Insert ke tabel products sementara untuk ambil ID dan data lengkap
+            $this->db->insert('products', $data);
+            $id = $this->db->insert_id();
+            $success = true;
+
+            // Cek apakah produk dicentang untuk kategori khusus
+            $is_best_seller = $this->input->post('is_best_seller');
+            $is_on_sale     = $this->input->post('is_on_sale');
+
+            if ($is_best_seller) {
+                $this->Product_model->insert_best_seller($id);
+            }
+
+            if ($is_on_sale) {
+                $this->Product_model->insert_on_sale($id);
+            }
+
+            // Jika masuk ke best_seller atau on_sale, hapus dari tabel products (New Arrival)
+            if ($is_best_seller || $is_on_sale) {
+                $this->db->delete('products', ['id' => $id]);
+            }
+        }
     }
+
+    $this->load->view('products/create_form', [
+        'errors'  => $errors,
+        'success' => $success
+    ]);
+}
+
+
 
     public function delete($id) {
         if (!is_numeric($id)) show_error('ID produk tidak valid.', 400);

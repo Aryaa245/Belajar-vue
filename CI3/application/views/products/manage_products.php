@@ -24,7 +24,7 @@
     <div class="errors"><?php echo $error; ?></div>
   <?php endif; ?>
 
-  <p><a href="<?php echo site_url('products/create_form'); ?>" class="btn">Tambah Produk Baru</a></p>
+  <p><a href="<?php echo site_url('index.php/products/create_form'); ?>" class="btn">Tambah Produk Baru</a></p>
 
   <!-- ========== NEW ARRIVAL ========== -->
   <h3>Produk New Arrival</h3>

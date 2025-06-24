@@ -21,6 +21,20 @@ class Product_model extends CI_Model {
     {
         return $this->db->insert('products', $data);
     }
+    public function insert_best_seller($id) {
+    $product = $this->get_product_by_id($id);
+    if ($product) {
+        $this->db->insert('best_seller', $product);
+    }
+}
+
+public function insert_on_sale($id) {
+    $product = $this->get_product_by_id($id);
+    if ($product) {
+        $this->db->insert('on_sale', $product);
+    }
+}
+
 
     // Update produk
     public function update_product($id, $data)
