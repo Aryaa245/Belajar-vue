@@ -226,6 +226,53 @@ public function delete_best_seller($id) {
     redirect('index.php/products/manage?deleted=1');
 }
 
+// EDIT ON SALE
+public function edit_on_sale($id) {
+    $this->load->model('Product_model');
+    if (!is_numeric($id)) show_error('ID produk tidak valid.', 400);
 
+    $product = $this->Product_model->get_on_sale_by_id($id);
+    if (!$product) show_error('Produk On Sale tidak ditemukan.', 404);
+
+    $errors = [];
+    $success = false;
+
+    if ($this->input->server('REQUEST_METHOD') === 'POST') {
+        $data_update = [
+            'title'       => $this->input->post('title'),
+            'specs'       => $this->input->post('specs'),
+            'price'       => $this->input->post('price'),
+            'old_price'   => $this->input->post('old_price'),
+            'status'      => $this->input->post('status'),
+            'category'    => $this->input->post('category'),
+            'buy_link'    => $this->input->post('buy_link'),
+            'description' => $this->input->post('description')
+        ];
+
+        try {
+            $this->Product_model->update_on_sale($id, $data_update);
+            $success = true;
+            $product = $this->Product_model->get_on_sale_by_id($id);
+        } catch (Exception $e) {
+            $errors[] = "Gagal mengupdate produk on sale: " . $e->getMessage();
+        }
+    }
+
+    $this->load->view('products/edit_on_sale', [
+        'product' => $product,
+        'errors'  => $errors,
+        'success' => $success
+    ]);
+}
+public function delete_on_sale($id) {
+    if (!is_numeric($id)) show_error('ID produk tidak valid.', 400);
+
+    $product = $this->Product_model->get_on_sale_by_id($id);
+    if (!$product) show_error('Produk On Sale tidak ditemukan.', 404);
+
+    $this->Product_model->delete_on_sale($id);
+
+    redirect('index.php/products/manage?deleted=1');
+}
 	
 }
