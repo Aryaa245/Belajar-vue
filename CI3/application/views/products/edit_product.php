@@ -4,51 +4,10 @@
   <meta charset="UTF-8">
   <title>Edit Produk</title>
   <link rel="stylesheet" href="<?php echo base_url('CSS/style.css'); ?>">
-  <style>
-    form {
-      max-width: 700px;
-      margin-top: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    input[type="text"], input[type="number"], textarea, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      padding: 10px 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .message.success {
-      background-color: #d4edda;
-      padding: 10px;
-      border-left: 6px solid #28a745;
-      margin-bottom: 20px;
-    }
-    .errors {
-      background-color: #f8d7da;
-      padding: 10px;
-      border-left: 6px solid #dc3545;
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
-<div class="container">
+  
+</head> 
+<body class ="edit">
+<div class="container_edit">
   <h2>Edit Produk</h2>
   <a href="<?php echo site_url('index.php/products/manage'); ?>">&larr; Kembali ke daftar produk</a>
 

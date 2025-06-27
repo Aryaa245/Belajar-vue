@@ -18,6 +18,9 @@
           </button>
         </div>
       </div>
+      
+      
+
 
       <div class="product-info">
         <h1 style="font-weight: bold">{{ product.title }}</h1>
@@ -64,6 +67,8 @@
         </div>
       </div>
     </nav>
+
+    
 
     <div class="tab-content-container">
       <div :class="['tab-content', { active: activeTab === 'description-tab' }]" id="description-tab">

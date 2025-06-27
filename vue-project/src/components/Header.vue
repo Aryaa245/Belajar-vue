@@ -32,8 +32,6 @@
         
    <a href="contact" class="menu-item">About us</a>
       </div>
-    
-
       <div class="menu-list" id="categoriesTab" style="display: none;">
         <a  href="Workstastion" class="menu-item">Workstation</a>
         <a href="Business" class="menu-item">Business</a>

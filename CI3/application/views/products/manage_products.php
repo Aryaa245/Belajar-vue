@@ -125,8 +125,8 @@
             <td><?php echo $p['status']; ?></td>
             <td><?php echo $p['created_at']; ?></td>
             <td>
-              <a href="<?php echo site_url('index.html/products/edit/' . $p['id'] . '?type=best_seller'); ?>" class="btn-edit">Edit</a>
-              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=best_seller'); ?>"  class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
+              <a href="<?php echo site_url('index.php/products/edit_on_sale/' . $p['id'] . '?type=on_sale'); ?>" class="btn-edit">Edit</a>
+              <a href="<?php echo site_url('index.php/products/delete/' . $p['id'] . '?type=on_sale'); ?>"  class="btn-delete" onclick="return confirm('Yakin ingin menghapus produk on sale ini?')">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>
