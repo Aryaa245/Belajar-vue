@@ -57,18 +57,16 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
-
-router.beforeEach((to, from, next) => {
-  const isLoggedIn = !!sessionStorage.getItem('user')
-
-  if (to.meta.requiresAuth && !isLoggedIn) {
-    next('/login')
-  } else {
-    next()
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }
+    return { top: 0 }
   }
 })
-
 
 export default router
