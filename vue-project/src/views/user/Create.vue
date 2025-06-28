@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container-createu">
     <h2>Tambah User Baru</h2>
-    <div class="header-nav">
-    </div>
 
     <div v-if="errors.length > 0" class="errors">
       <p v-for="(err, idx) in errors" :key="idx">{{ err }}</p>
@@ -13,24 +11,36 @@
     </div>
 
     <form @submit.prevent="handleSubmit">
-      <label>Username:</label>
-      <input type="text" v-model="form.username" required />
+      <div class="form-group">
+        <label>Username:</label>
+        <input type="text" v-model="form.username" required />
+      </div>
 
-      <label>Nama Lengkap:</label>
-      <input type="text" v-model="form.nama_lengkap" required />
+      <div class="form-group">
+        <label>Nama Lengkap:</label>
+        <input type="text" v-model="form.nama_lengkap" required />
+      </div>
 
-      <label>Email:</label>
-      <input type="email" v-model="form.email" required />
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" v-model="form.email" required />
+      </div>
 
-      <label>Password:</label>
-      <input type="password" v-model="form.password" required />
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" v-model="form.password" required />
+      </div>
 
-      <label>Role:</label>
-      <select v-model="form.role" required>
-        <option value="admin">Admin</option>
-      </select>
+      <div class="form-group">
+        <label>Role:</label>
+        <select v-model="form.role" required>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
 
-      <button type="submit">Simpan</button>
+      <div class="form-group">
+        <button type="submit">Simpan</button>
+      </div>
     </form>
   </div>
 </template>
@@ -49,6 +59,12 @@ export default {
       errors: [],
       success: false
     };
+  },
+  mounted() {
+    document.body.classList.add("login");
+  },
+  beforeUnmount() {
+    document.body.classList.remove("login");
   },
   methods: {
     async handleSubmit() {
@@ -81,37 +97,91 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  max-width: 600px;
-  margin: 40px auto;
+<style>
+body.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4E71FF;
 }
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 12px;
+
+.container-createu {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 900px;
+  width: 90%;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.7s ease;
 }
-input, select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  margin-bottom: 12px;
+
+.container-createu h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
-button {
-  padding: 10px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+
+.success, .errors {
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 .success {
-  background-color: #d4edda;
-  padding: 10px;
-  margin-bottom: 15px;
+  background: #e0f7e0;
+  border: 1px solid #7fd47f;
+  color: #2a7d2a;
 }
 .errors {
-  background-color: #f8d7da;
-  padding: 10px;
-  margin-bottom: 15px;
+  background: #fde8e8;
+  border: 1px solid #f1b8b8;
+  color: #b22d2d;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+input, select {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+input:focus, select:focus {
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background: #6c63ff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #584fe0;
 }
 </style>
