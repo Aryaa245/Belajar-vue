@@ -9,15 +9,17 @@
       </div>
     </div>
 
-    <div class="profile-content">
-      <div class="section">
+   
+    <div class="profile-grid">
+      <div class="card">
         <h2>✨ Tentang Saya</h2>
         <p>
-          Perkenalkan, saya Arya, seorang mahasiswa yang berfokus pada desain antarmuka pengguna dan pengembangan front end. Saya menyukai tantangan untuk menciptakan solusi digital yang fungsional dan menarik secara visual.
+          Perkenalkan, saya Arya, seorang mahasiswa yang berfokus pada desain antarmuka pengguna dan pengembangan front end.
+          Saya menyukai tantangan untuk menciptakan solusi digital yang fungsional dan menarik secara visual.
         </p>
       </div>
 
-      <div class="section">
+      <div class="card">
         <h2>🛠️ Jobdesk</h2>
         <ul class="skills">
           <li>UI/UX Design</li>
@@ -28,14 +30,14 @@
         </ul>
       </div>
 
-      <div class="section">
+      <div class="card">
         <h2>📱 Social Media</h2>
         <div class="social-links">
-          <a href="https://www.instagram.com/username" target="_blank" class="social-item">
+          <a href="https://www.instagram.com/aryaa_bayuu" target="_blank" class="social-item">
             <div class="icon-circle">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
             </div>
-            <span>@username</span>
+            <span>@aryaa_bayuu</span>
           </a>
           <a href="https://www.tiktok.com/@username" target="_blank" class="social-item">
             <div class="icon-circle">
@@ -43,137 +45,113 @@
             </div>
             <span>@username</span>
           </a>
-          <a href="https://github.com/username" target="_blank" class="social-item">
+          <a href="https://github.com/aryaa245" target="_blank" class="social-item">
             <div class="icon-circle">
               <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
             </div>
-            <span>github.com/username</span>
+            <span>aryaa245</span>
           </a>
         </div>
       </div>
 
-      <div class="section">
-        <h2>📸 Galeri Karya</h2>
-        <div class="gallery">
-          <img src="../assets/Images/ui1.jpg" alt="UI Design 1" />
-          <img src="../assets/Images/ui2.jpg" alt="UI Design 2" />
-          <img src="../assets/Images/ui3.jpg" alt="UI Design 3" />
-        </div>
-      </div>
 
-      <router-link to="/" class="back-button">← Kembali ke Beranda</router-link>
     </div>
+
+   
+    <router-link to="/" class="back-button">← Kembali ke Beranda</router-link>
   </div>
 </template>
 
-<script>
-export default {
-  name: "ProfilArya",
-};
-</script>
-
-<style scoped>
+<style>
 .profile-arya-container {
   font-family: 'Segoe UI', sans-serif;
   color: #333;
-  padding: 6rem;
-  max-width: 900px;
+  padding: 4rem 2rem;
+  max-width: 1200px;
   margin: auto;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out;
 }
+
 
 .profile-banner {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #e0f7fa, #e1bee7);
-  padding: 1.5rem;
+  background: linear-gradient(to right, #69cdff94, #e0f7fa);
+  padding: 2rem;
   border-radius: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .profile-photo {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border: 5px solid white;
+  box-shadow: 0 0 15px rgba(44, 255, 237, 0.15);
 }
 
 .profile-name-section h1 {
-  margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
 }
 
 .profile-name-section p {
-  margin: 0.3rem 0;
-  font-size: 1.1rem;
+  margin: 0.2rem 0;
+  font-size: 1rem;
 }
 
-.section {
-  margin-bottom: 2rem;
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
-.section h2 {
-  color: #6a1b9a;
-  margin-bottom: 0.5rem;
+.card {
+  background-color: #fafafa;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
 }
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
 
 .skills {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .skills li {
   background-color: #f3e5f5;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 1rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-.gallery {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.gallery img {
-  width: 200px;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-.back-button {
-  display: inline-block;
-  margin-top: 2rem;
-  text-decoration: none;
-  background-color: #7b1fa2;
-  color: white;
-  padding: 0.5rem 1.2rem;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-}
-
-.back-button:hover {
-  background-color: #4a148c;
-}
 
 .social-links {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .social-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.8rem;
   text-decoration: none;
-  color: inherit;
+  color: #333;
+  font-size: 0.95rem;
 }
 
 .icon-circle {
@@ -192,10 +170,40 @@ export default {
   height: 18px;
 }
 
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 3rem;
+  background-color: #69cdff94;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #3ad8ffbb;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;

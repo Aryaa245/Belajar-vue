@@ -9,8 +9,8 @@
       </div>
     </div>
 
-    <div class="profile-content">
-      <div class="section">
+    <div class="profile-grid">
+      <div class="card">
         <h2>✨ Tentang Saya</h2>
         <p>
           Halo! Saya Rifky Danu Asmoro, seorang mahasiswa dengan ketertarikan besar pada dunia desain antarmuka dan
@@ -18,7 +18,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="card">
         <h2>🛠️ Jobdesk</h2>
         <ul class="skills">
           <li>Figma / Adobe XD</li>
@@ -29,59 +29,41 @@
         </ul>
       </div>
 
-      <div class="section">
-  <h2>📱 Social Media</h2>
-  <div style="display: flex; flex-direction: column; gap: 15px;">
-    <a href="https://www.instagram.com/username" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <div style="width: 35px; height: 35px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" width="18" />
-      </div>
-      <span>@username</span>
-    </a>
-    <a href="https://www.tiktok.com/@username" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <div style="width: 35px; height: 35px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok" width="18" />
-      </div>
-      <span>@username</span>
-    </a>
-    <a href="https://github.com/username" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-      <div style="width: 35px; height: 35px; background-color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" width="18" />
-      </div>
-      <span>github.com/username</span>
-    </a>
-  </div>
-</div>
-
-
-
-
-      <div class="section">
-        <h2>📸 Galeri Karya</h2>
-        <div class="gallery">
-          <img src="../assets/Images/ui1.jpg" alt="UI Design 1" />
-          <img src="../assets/Images/ui2.jpg" alt="UI Design 2" />
-          <img src="../assets/Images/ui3.jpg" alt="UI Design 3" />
+      <div class="card">
+        <h2>📱 Social Media</h2>
+        <div class="social-links">
+          <a href="https://www.instagram.com/rifky.danuu" target="_blank" class="social-item">
+            <div class="icon-circle">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+            </div>
+            <span>@rifky.danuu</span>
+          </a>
+          <a href="https://www.tiktok.com/danuu" target="_blank" class="social-item">
+            <div class="icon-circle">
+              <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok" />
+            </div>
+            <span>@danuu</span>
+          </a>
+          <a href="https://github.com/ddaannuu" target="_blank" class="social-item">
+            <div class="icon-circle">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+            </div>
+            <span>ddaannuu</span>
+          </a>
         </div>
       </div>
-
-      <router-link to="/" class="back-button">← Kembali ke Beranda</router-link>
     </div>
+
+    <router-link to="/" class="back-button">← Kembali ke Beranda</router-link>
   </div>
 </template>
 
-<script>
-export default {
-  name: "ProfilDanu",
-};
-</script>
-
-<style scoped>
+<style>
 .profile-danu-container {
   font-family: 'Segoe UI', sans-serif;
   color: #333;
-  padding: 6rem;
-  max-width: 900px;
+  padding: 4rem 2rem;
+  max-width: 1200px;
   margin: auto;
   animation: fadeIn 1s ease-in-out;
 }
@@ -92,73 +74,102 @@ export default {
   gap: 2rem;
   margin-bottom: 2rem;
   background: linear-gradient(to right, #e0f7fa, #e1bee7);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 1rem;
 }
 
 .profile-photo {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border: 5px solid white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
 .profile-name-section h1 {
-  margin: 0;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
 }
 
 .profile-name-section p {
-  margin: 0.3rem 0;
-  font-size: 1.1rem;
+  margin: 0.2rem 0;
+  font-size: 1rem;
 }
 
-.section {
-  margin-bottom: 2rem;
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
-.section h2 {
-  color: #6a1b9a;
-  margin-bottom: 0.5rem;
+.card {
+  background-color: #fafafa;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .skills {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .skills li {
   background-color: #f3e5f5;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 1rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-.gallery {
+.social-links {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
-.gallery img {
-  width: 200px;
-  border-radius: 0.5rem;
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.icon-circle {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.icon-circle img {
+  width: 18px;
+  height: 18px;
 }
 
 .back-button {
   display: inline-block;
-  margin-top: 2rem;
-  text-decoration: none;
+  margin-top: 3rem;
   background-color: #7b1fa2;
   color: white;
-  padding: 0.5rem 1.2rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 8px;
+  text-decoration: none;
   transition: background-color 0.3s;
 }
 
