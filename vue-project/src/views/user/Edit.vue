@@ -1,4 +1,5 @@
 <template>
+  <div class="page-wrapper">
   <div class="container-edit">
     <h2>Edit User</h2>
     <router-link to="/dashboard" class="back-link">← Kembali ke Manajemen User</router-link>
@@ -43,6 +44,7 @@
         <button type="submit">Simpan Perubahan</button>
       </div>
     </form>
+  </div>
   </div>
 </template>
 
@@ -119,9 +121,8 @@ export default {
 }
 </script>
 
-<style>
-
-body.edit {
+<style scoped>
+.page-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -207,4 +208,6 @@ button {
 button:hover {
   background: #584fe0;
 }
+
+
 </style>

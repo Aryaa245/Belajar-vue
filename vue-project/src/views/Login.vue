@@ -1,4 +1,5 @@
 <template>
+  <div class="page-wrapper">
   <div class="container-login">
     <h2>Login User</h2>
 
@@ -35,6 +36,7 @@
         <button type="submit">Login</button>
       </div>
     </form>
+  </div>
   </div>
 </template>
 
@@ -84,8 +86,8 @@ export default {
 }
 </script>
 
-<style>
-body.login {
+<style scoped>
+.page-wrapper {
   min-height: 100vh;
     display: flex;
     align-items: center;
