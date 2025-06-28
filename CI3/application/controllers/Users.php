@@ -3,32 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
 
-    public function __construct() {
+   public function __construct() {
 		parent::__construct();
 		$this->load->model('User_model');
 		$this->load->helper('auth_check');
 
-		// Cek jika route ini API dan tidak login → berikan JSON error
-		if (!in_array($this->router->method, ['create_api', 'list_api'])) {
-			require_login(); // hanya untuk halaman biasa
-		} else {
-			if (!$this->session->userdata('user_id')) {
-				if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-					header("Access-Control-Allow-Origin: http://localhost:5173");
-					header("Access-Control-Allow-Methods: POST, OPTIONS");
-					header("Access-Control-Allow-Headers: Content-Type");
-					header("Access-Control-Allow-Credentials: true");
-					exit(0);
-				}
-
-				header("Access-Control-Allow-Origin: http://localhost:5173");
-				header("Access-Control-Allow-Credentials: true");
-				header("Content-Type: application/json");
-				echo json_encode(['status' => false, 'message' => 'Unauthorized']);
-				exit;
-			}
+		// Jalankan hanya jika bukan API
+		if (strpos($_SERVER['REQUEST_URI'], 'api') === false) {
+			require_login();
 		}
 	}
+
 
 
     public function index() {
@@ -320,21 +305,21 @@ class Users extends CI_Controller {
 }
 
 
-	public function update_user_api($id) {
+public function update_user_api($id) {
     header("Access-Control-Allow-Origin: http://localhost:5173");
     header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     header("Content-Type: application/json");
 
-    // Tangani preflight request
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        exit(0);
+        http_response_code(200);
+        exit;
     }
 
-    $data = json_decode(file_get_contents('php://input'), true);
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!$data || !isset($id)) {
+    if (!$data) {
         echo json_encode(['status' => false, 'message' => 'Data tidak valid.']);
         return;
     }
@@ -350,12 +335,15 @@ class Users extends CI_Controller {
         $update_data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
     }
 
-    if ($this->User_model->update_user($id, $update_data)) {
-        echo json_encode(['status' => true, 'message' => 'User berhasil diperbarui.']);
-    } else {
-        echo json_encode(['status' => false, 'message' => 'Gagal memperbarui user.']);
-    }
+    $this->load->model('User_model');
+    $updated = $this->User_model->update_user($id, $update_data);
+
+    echo json_encode([
+        'status' => $updated,
+        'message' => $updated ? 'User berhasil diperbarui.' : 'Gagal memperbarui user.'
+    ]);
 }
+
 
 
 }

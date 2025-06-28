@@ -79,13 +79,14 @@ export default {
 
       try {
         const res = await fetch(`http://localhost/technologia/CI3/index.php/users/update_user_api/${this.$route.params.id}`, {
-          method: 'POST', // ✅ pakai POST (bukan PUT)
-          credentials: 'include',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
+          credentials: 'include',
           body: JSON.stringify(this.form)
         });
+
 
         const result = await res.json();
         if (result.status) {
