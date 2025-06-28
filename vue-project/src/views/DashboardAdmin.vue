@@ -89,21 +89,28 @@ export default {
           console.error('Gagal ambil data user:', err);
         });
     },
-    deleteUser(id) {
-      if (confirm('Apakah Anda yakin ingin menghapus user ini?')) {
-        fetch(`http://localhost/technologia/CI3/index.php/users/delete/${id}`, {
-          method: 'GET',
-          credentials: 'include'
-        })
-          .then(() => {
-            this.fetchUsers(); // refresh setelah hapus
-          })
-          .catch(err => {
-            console.error('Gagal hapus user:', err);
-          });
-      }
-    },
- 
+  deleteUser(id) {
+  if (confirm('Apakah Anda yakin ingin menghapus user ini?')) {
+    fetch(`http://localhost/technologia/CI3/index.php/users/delete_user_api/${id}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.status) {
+          alert('User berhasil dihapus.');
+          this.fetchUsers(); // refresh daftar user
+        } else {
+          alert('Gagal menghapus user: ' + result.message);
+        }
+      })
+      .catch(err => {
+        console.error('Gagal hapus user:', err);
+        alert('Terjadi kesalahan saat menghubungi server.');
+      });
+  }
+},
+
 
     formatDate(dateStr) {
       const d = new Date(dateStr);

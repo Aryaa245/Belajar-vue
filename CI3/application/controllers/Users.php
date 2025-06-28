@@ -343,6 +343,40 @@ public function update_user_api($id) {
         'message' => $updated ? 'User berhasil diperbarui.' : 'Gagal memperbarui user.'
     ]);
 }
+public function delete_user_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+
+    // Untuk preflight OPTIONS
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        http_response_code(200);
+        exit;
+    }
+
+    // Cegah hapus diri sendiri (gunakan session user_id jika tersedia)
+    if ($this->session->userdata('user_id') == $id) {
+        echo json_encode(['status' => false, 'message' => 'Tidak dapat menghapus akun sendiri.']);
+        return;
+    }
+
+    $this->load->model('User_model');
+    $user = $this->User_model->get_user_by_id($id);
+
+    if (!$user) {
+        echo json_encode(['status' => false, 'message' => 'User tidak ditemukan.']);
+        return;
+    }
+
+    if ($this->User_model->delete_user($id)) {
+        echo json_encode(['status' => true, 'message' => 'User berhasil dihapus.']);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Gagal menghapus user.']);
+    }
+}
+
 
 
 
