@@ -10,6 +10,10 @@ class User_model extends CI_Model {
                         ->row();  // return object
     }
 
+	public function get_by_username($username) {
+        return $this->db->get_where('users', ['username' => $username])->row_array();
+    }
+
 	public function get_all_users() {
         return $this->db->order_by('created_at', 'DESC')
                         ->get('users')
@@ -24,6 +28,8 @@ class User_model extends CI_Model {
 	{
 		return $this->db->get_where('users', ['id' => $id])->row_array();
 	}
+
+	
 
 	public function delete_user($id)
 	{
@@ -44,6 +50,12 @@ class User_model extends CI_Model {
 		return $query->num_rows() > 0;
 	}
 
+	public function username_exists($username)
+	{
+		return $this->db->where('username', $username)->get('users')->num_rows() > 0;
+	}
+
+	
 
 
 }

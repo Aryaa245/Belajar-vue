@@ -4,11 +4,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
 
     public function __construct() {
-        parent::__construct();
-        $this->load->model('User_model');
-        $this->load->helper('auth_check'); // Load helper
-        require_login(); // Wajib login
-    }
+		parent::__construct();
+		$this->load->model('User_model');
+		$this->load->helper('auth_check');
+
+		// Cek jika route ini API dan tidak login → berikan JSON error
+		if (!in_array($this->router->method, ['create_api', 'list_api'])) {
+			require_login(); // hanya untuk halaman biasa
+		} else {
+			if (!$this->session->userdata('user_id')) {
+				if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+					header("Access-Control-Allow-Origin: http://localhost:5173");
+					header("Access-Control-Allow-Methods: POST, OPTIONS");
+					header("Access-Control-Allow-Headers: Content-Type");
+					header("Access-Control-Allow-Credentials: true");
+					exit(0);
+				}
+
+				header("Access-Control-Allow-Origin: http://localhost:5173");
+				header("Access-Control-Allow-Credentials: true");
+				header("Content-Type: application/json");
+				echo json_encode(['status' => false, 'message' => 'Unauthorized']);
+				exit;
+			}
+		}
+	}
+
 
     public function index() {
         // Redirect ke dashboard_user
@@ -163,6 +184,178 @@ class Users extends CI_Controller {
 		]);
 	}
 
+	public function list_api() {
+		header("Access-Control-Allow-Origin: http://localhost:5173");
+		header("Access-Control-Allow-Credentials: true");
+		header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+		header("Access-Control-Allow-Headers: Content-Type, Authorization");
+		header('Content-Type: application/json');
+
+		$this->load->model('User_model');
+		$users = $this->User_model->get_all_users();
+
+		echo json_encode($users);
+	}
+
+	private function is_api_request() {
+		return strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false
+			|| strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false;
+	}
+
+
+	public function create_api()
+	{
+			if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+			header("Access-Control-Allow-Origin: http://localhost:5173");
+			header("Access-Control-Allow-Methods: POST, OPTIONS");
+			header("Access-Control-Allow-Headers: Content-Type");
+			header("Access-Control-Allow-Credentials: true");
+			exit(0);
+		}
+
+		header("Access-Control-Allow-Origin: http://localhost:5173");
+		header("Access-Control-Allow-Credentials: true");
+		header("Content-Type: application/json");
+
+
+		$data = json_decode(file_get_contents('php://input'), true);
+		$errors = [];
+
+		if (empty($data['username']))      $errors[] = 'Username wajib diisi.';
+		if (empty($data['nama_lengkap']))  $errors[] = 'Nama lengkap wajib diisi.';
+		if (empty($data['email']))         $errors[] = 'Email wajib diisi.';
+		if (empty($data['password']))      $errors[] = 'Password wajib diisi.';
+		if (empty($data['role']))          $errors[] = 'Role wajib dipilih.';
+
+		if (!empty($errors)) {
+			echo json_encode(['status' => false, 'message' => implode(' ', $errors)]);
+			return;
+		}
+
+		// Cek username unik
+		$this->load->model('User_model');
+		if ($this->User_model->username_exists($data['username'])) {
+			echo json_encode(['status' => false, 'message' => 'Username sudah digunakan.']);
+			return;
+		}
+
+		$data_insert = [
+			'username'     => $data['username'],
+			'nama_lengkap' => $data['nama_lengkap'],
+			'email'        => $data['email'],
+			'password'     => password_hash($data['password'], PASSWORD_DEFAULT),
+			'role'         => $data['role']
+		];
+
+		$this->db->insert('users', $data_insert);
+
+		echo json_encode(['status' => true, 'message' => 'User berhasil ditambahkan.']);
+	}
+
+	public function get_user($id)
+	{
+		header("Access-Control-Allow-Origin: http://localhost:5173");
+		header("Access-Control-Allow-Credentials: true");
+		header("Content-Type: application/json");
+
+		$user = $this->User_model->get_user_by_id($id);
+		if ($user) {
+			echo json_encode($user);
+		} else {
+			echo json_encode(['error' => 'User tidak ditemukan']);
+		}
+	}
+
+	public function update_api($id)
+	{
+		header("Access-Control-Allow-Origin: http://localhost:5173");
+		header("Access-Control-Allow-Credentials: true");
+		header("Content-Type: application/json");
+
+		$data = json_decode(file_get_contents("php://input"), true);
+		$errors = [];
+
+		if (empty($data['username']) || empty($data['nama_lengkap']) || empty($data['email']) || empty($data['role'])) {
+			echo json_encode(['status' => false, 'message' => 'Semua field wajib diisi.']);
+			return;
+		}
+
+		if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+			echo json_encode(['status' => false, 'message' => 'Email tidak valid.']);
+			return;
+		}
+
+		// Cek duplikat username
+		if ($this->User_model->username_exists_other($data['username'], $id)) {
+			echo json_encode(['status' => false, 'message' => 'Username sudah digunakan.']);
+			return;
+		}
+
+		$update_data = [
+			'username'     => $data['username'],
+			'nama_lengkap' => $data['nama_lengkap'],
+			'email'        => $data['email'],
+			'role'         => $data['role']
+		];
+
+		if (!empty($data['password'])) {
+			$update_data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+		}
+
+		$this->User_model->update_user($id, $update_data);
+		echo json_encode(['status' => true, 'message' => 'User berhasil diperbarui.']);
+	}
+
+	public function get_user_by_id_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Content-Type: application/json");
+
+    $user = $this->User_model->get_user_by_id($id);
+    if ($user) {
+        echo json_encode($user);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'User tidak ditemukan']);
+    }
+}
+
+
+	public function update_user_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+
+    // Tangani preflight request
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
+
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (!$data || !isset($id)) {
+        echo json_encode(['status' => false, 'message' => 'Data tidak valid.']);
+        return;
+    }
+
+    $update_data = [
+        'username'     => $data['username'],
+        'nama_lengkap' => $data['nama_lengkap'],
+        'email'        => $data['email'],
+        'role'         => $data['role']
+    ];
+
+    if (!empty($data['password'])) {
+        $update_data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    }
+
+    if ($this->User_model->update_user($id, $update_data)) {
+        echo json_encode(['status' => true, 'message' => 'User berhasil diperbarui.']);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Gagal memperbarui user.']);
+    }
+}
 
 
 }

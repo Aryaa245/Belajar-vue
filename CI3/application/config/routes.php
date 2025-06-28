@@ -65,6 +65,8 @@ $route['auth/logout'] = 'auth/logout';
 
 $route['users/index'] = 'users/index';
 $route['users/dashboard_user'] = 'users/dashboard_user';
+$route['users/update_user_api/(:num)'] = 'users/update_user_api/$1';
+
 
 
 
