@@ -301,7 +301,7 @@ export default {
   },
   async created() {
     try {
-      const res = await fetch("http://localhost/technologia/Backend/products/get_all_products.php");
+      const res = await fetch("http://localhost/technologia/CI3/index.php/product_api/get_new_arrival");
       const data = await res.json();
       if (!data.error) {
         this.products = data;
@@ -312,7 +312,7 @@ export default {
       console.error("Gagal mengambil produk:", err);
     }
     try {
-      const res = await fetch("http://localhost/technologia/Backend/products/get_best_seller.php");
+      const res = await fetch("http://localhost/technologia/CI3/index.php/product_api/get_best_seller");
       const data = await res.json();
       if (!data.error) {
         this.bestSellers = data;
@@ -323,7 +323,7 @@ export default {
       console.error("Gagal mengambil produk:", err);
     }
      try {
-      const res = await fetch("http://localhost/technologia/Backend/products/get_on_sale.php");
+      const res = await fetch("http://localhost/technologia/CI3/index.php/product_api/get_on_sale");
       const data = await res.json();
       if (!data.error) {
         this.onSale = data;

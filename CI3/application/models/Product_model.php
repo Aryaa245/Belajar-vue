@@ -99,6 +99,10 @@ public function update_best_seller($id, $data) {
     return $this->db->update('best_seller', $data);
 }
 
+public function get_products_by_type($type) {
+    return $this->db->get($type)->result_array();
+}
+
 
 
 }
