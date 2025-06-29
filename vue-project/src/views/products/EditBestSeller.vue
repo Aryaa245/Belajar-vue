@@ -2,6 +2,7 @@
   <div class="page-wrapper">
     <div class="container_edit">
       <h2>Edit Produk Best Seller</h2>
+      
       <router-link to="/products/manage" class="btn">← Kembali ke Daftar Produk</router-link>
 
       <div v-if="errors.length" class="errors">

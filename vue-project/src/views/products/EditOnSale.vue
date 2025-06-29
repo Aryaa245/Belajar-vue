@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="container_edit">
       <h2>Edit Produk On Sale</h2>
-      <router-link to="/dashboardproduct">← Kembali ke Daftar Produk</router-link>
+      <router-link to="/products/manage">← Kembali ke Daftar Produk</router-link>
 
       <div v-if="success" class="message success">
         <p>Produk berhasil diperbarui.</p>

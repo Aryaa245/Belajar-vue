@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div class="container_edit">
-      <h2>Edit Produk</h2>
+      <h2>Edit Produk New Arrival</h2>
       <router-link to="/products/manage">&larr; Kembali ke daftar produk</router-link>
 
       <div v-if="success" class="message success">
