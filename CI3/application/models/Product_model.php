@@ -82,6 +82,7 @@ public function update_product($id, $data)
 }
 
 public function get_on_sale_by_id($id) {
+      $this->db->order_by('created_at', 'DESC');
     return $this->db->get_where('on_sale', ['id' => $id])->row_array();
 }
 
@@ -91,6 +92,7 @@ public function update_on_sale($id, $data) {
 }
 
 public function get_best_seller_by_id($id) {
+      $this->db->order_by('created_at', 'DESC');
     return $this->db->get_where('best_seller', ['id' => $id])->row_array();
 }
 
@@ -100,6 +102,7 @@ public function update_best_seller($id, $data) {
 }
 
 public function get_products_by_type($type) {
+      $this->db->order_by('created_at', 'DESC');
     return $this->db->get($type)->result_array();
 }
 
