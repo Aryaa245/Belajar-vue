@@ -532,7 +532,63 @@ public function get_on_sale_by_id_api($id) {
     } else {
         echo json_encode(['status' => false, 'message' => 'Produk tidak ditemukan']);
     }
+
+	
 }
+
+// Ambil detail produk best seller berdasarkan ID (GET)
+public function get_best_seller_by_id($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Content-Type: application/json");
+
+    $product = $this->Product_model->get_best_seller_by_id($id);
+    if ($product) {
+        echo json_encode($product);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Produk tidak ditemukan']);
+    }
+}
+
+// Update produk best seller berdasarkan ID (POST)
+public function update_best_seller($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (!$data) {
+        echo json_encode(['status' => false, 'message' => 'Data tidak valid']);
+        return;
+    }
+
+    $update_data = [
+        'title'       => $data['title'] ?? '',
+        'specs'       => $data['specs'] ?? '',
+        'price'       => $data['price'] ?? 0,
+        'old_price'   => $data['old_price'] ?? 0,
+        'status'      => $data['status'] ?? '',
+        'category'    => $data['category'] ?? '',
+        'buy_link'    => $data['buy_link'] ?? '',
+        'description' => $data['description'] ?? ''
+    ];
+
+    $this->load->model('Product_model');
+    $success = $this->Product_model->update_best_seller($id, $update_data);
+
+    if ($success) {
+        echo json_encode(['status' => true, 'message' => 'Produk berhasil diperbarui']);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Gagal memperbarui produk']);
+    }
+}
+
 
 
 

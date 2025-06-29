@@ -69,7 +69,7 @@
           <td>{{ p.status }}</td>
           <td>{{ p.created_at }}</td>
           <td>
-            <router-link :to="`/products/edit/${p.id}?type=best_seller`" class="btn-edit">Edit</router-link>
+            <router-link :to="`/products/edit_best_seller/${p.id}?type=best_seller`" class="btn-edit">Edit</router-link>
             <button class="btn-delete" @click="deleteProduct(p.id, 'best_seller')">Hapus</button>
           </td>
         </tr>
