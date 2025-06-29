@@ -12,6 +12,8 @@
 
     <router-link to="/products/create" class="btn">Tambah Produk Baru</router-link>
 
+    <router-link to="/dashboard" class="btn btn-admin">Manajemen Admin</router-link>
+
     <!-- Produk New Arrival -->
     <h3>Produk New Arrival</h3>
     <div v-if="products.length === 0">Belum ada produk New Arrival.</div>
@@ -98,7 +100,7 @@
           <td>{{ p.status }}</td>
           <td>{{ p.created_at }}</td>
           <td>
-            <router-link :to="`/products/edit_on_sale/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
+            <router-link :to="`/products/edit/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
             <button class="btn-delete" @click="deleteProduct(p.id, 'on_sale')">Hapus</button>
           </td>
         </tr>
@@ -170,42 +172,177 @@ export default {
 
 <style scoped>
 .container-manage {
-  padding: 20px;
+  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #4E71FF;
+  min-height: 100vh;
+  color: #333;
 }
+
+/* Header Navigasi */
 .header-nav {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  color: white;
 }
+
+.header-nav h2 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.header-nav div span {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.header-nav a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Tombol Tambah Produk */
 .btn {
-  background-color: green;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  margin-bottom: 20px;
+  background-color: #00b969;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s ease;
   display: inline-block;
-}
-.btn-edit {
-  background-color: #007bff;
-  color: white;
-  padding: 4px 8px;
-  margin-right: 5px;
+  margin-bottom: 30px;
   text-decoration: none;
 }
-.btn-delete {
-  background-color: #dc3545;
-  color: white;
-  padding: 4px 8px;
-  border: none;
-  cursor: pointer;
+
+.btn:hover {
+  background-color: #17a589;
 }
+
+h3 {
+  width: fit-content;
+  margin-top: 60px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  padding: 8px 20px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
+/* Tabel Produk */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  table-layout: fixed;
 }
+
 th, td {
-  padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #dee2e6;
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+  color: #333;
 }
+
+th {
+  background-color: #e9f1ff;
+  font-weight: 600;
+}
+
+/* Baris Hover */
+tr:hover {
+  background-color: #f3f9ff;
+}
+
+/* Tombol Edit dan Hapus */
+.btn-edit,
+.btn-delete {
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  text-decoration: none !important; /* Hilangkan underline */
+  display: inline-block;
+}
+
+.btn-edit {
+  background-color: #0d6efd;
+  color: white;
+  margin-right: 8px;
+}
+
+.btn-edit:hover {
+  background-color: #084298;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #a71d2a;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .header-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 6px 10px;
+  }
+}
+
+
+.btn-admin {
+  background-color: #00b969;
+  margin-left: 
+  12px; 
+}
+
+.header-nav a {
+  background-color: #00b969;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none; 
+  transition: 0.3s ease;
+}
+
+.header-nav a:hover {
+  background-color: #17a589;
+}
+
+
+
 </style>
+
