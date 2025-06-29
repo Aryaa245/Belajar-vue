@@ -67,6 +67,11 @@ $route['users/index'] = 'users/index';
 $route['users/dashboard_user'] = 'users/dashboard_user';
 $route['users/update_user_api/(:num)'] = 'users/update_user_api/$1';
 
+$route['products/fetch_all'] = 'products/fetch_all';
+$route['products/create_form'] = 'products/create_form';
+
+
+
 
 
 

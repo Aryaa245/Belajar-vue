@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="{ scrolled: isScrolled }">
     <button class="btn list" type="button" @click="openOffcanvas">
       <i class="bi bi-list fs-4"></i>
     </button>
@@ -8,7 +8,7 @@
       <div class="offcanvas-header d-flex justify-content-between align-items-center w-100">
         <h5 class="offcanvas-title d-flex align-items-center" id="offcanvasWithBothOptionsLabel">
           <div class="logo-container d-flex align-items-center">
-            <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img me-2">
+            <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img me-2" />
             <span class="logo-text">Technologia</span>
           </div>
         </h5>
@@ -36,10 +36,10 @@
           <div class="submenu-item" @click="goToProfile('farhan')">Farhan Ardiansyah</div>
           <div class="submenu-item" @click="goToProfile('arya')">Stefanus Arya Bayu Samudra Bataona</div>
         </div>
-        <router-link to="/contact" class="menu-item" @click="closeOffcanvas">About us</router-link>
+        <router-link to="/HomePage#contact" class="menu-item" @click="closeOffcanvas">Contact</router-link>
       </div>
 
-      <div class="menu-list" id="categoriesTab" style="display: none;">
+      <div class="menu-list" id="categoriesTab" style="display: none">
         <router-link to="/Workstastion" class="menu-item" @click="closeOffcanvas">Workstation</router-link>
         <router-link to="/Business" class="menu-item" @click="closeOffcanvas">Business</router-link>
         <router-link to="/Categories" class="menu-item" @click="closeOffcanvas">Gaming</router-link>
@@ -49,12 +49,12 @@
     </div>
 
     <div class="logo-container">
-      <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img">
+      <img src="../assets/Images/logo 2.png" alt="Logo" class="logo-img" />
       <span class="logo-text">Technologia</span>
     </div>
     <div class="search-container">
       <i class="bi bi-search"></i>
-      <input type="text" class="search" placeholder="Search" id="searchInput" @keyup="handleSearch"/>
+      <input type="text" class="search" placeholder="Search" id="searchInput" @keyup="handleSearch" />
     </div>
     <div class="navbare">
       <nav>
@@ -72,54 +72,61 @@
 
 <script>
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
   data() {
     return {
       activeSubmenu: null,
       offcanvasInstance: null,
+      isScrolled: false,
       products: [
-        { name: 'MSI VECTOR 16HX', id: 1 },
-        { name: 'Lenovo Yoga Slim 7 Aura Edition', id: 3 },
-        { name: 'Asus ExpertBook P1 P1403CVA', id: 44 },
-        { name: 'HP OmniBook X 14 FE0333QU', id: 67 },
-        { name: 'Acer Nitro Lite NL16 71G', id: 22 },
-        { name: 'MSI Prestige 16 B1VEG', id: 54 },
-        { name: 'MSI Stealth 16 AI+ A3HVGG', id: 43 },
-        { name: 'HP Victus 15 FA2717TX', id: 41 },
-        { name: 'ASUS TUF F16 FX607VU', id: 11 }
-      ]
+        { name: "MSI VECTOR 16HX", id: 1 },
+        { name: "Lenovo Yoga Slim 7 Aura Edition", id: 3 },
+        { name: "Asus ExpertBook P1 P1403CVA", id: 44 },
+        { name: "HP OmniBook X 14 FE0333QU", id: 67 },
+        { name: "Acer Nitro Lite NL16 71G", id: 22 },
+        { name: "MSI Prestige 16 B1VEG", id: 54 },
+        { name: "MSI Stealth 16 AI+ A3HVGG", id: 43 },
+        { name: "HP Victus 15 FA2717TX", id: 41 },
+        { name: "ASUS TUF F16 FX607VU", id: 11 },
+      ],
     };
   },
   mounted() {
-    const el = document.getElementById('offcanvasWithBothOptions');
+    const el = document.getElementById("offcanvasWithBothOptions");
     this.offcanvasInstance = new bootstrap.Offcanvas(el);
-    document.addEventListener('click', this.handleClickOutside);
+    document.addEventListener("click", this.handleClickOutside);
+    window.addEventListener("scroll", this.handleScrollSpy);
+    window.addEventListener("scroll", this.checkScrollPosition);
   },
   beforeUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener("click", this.handleClickOutside);
+    window.removeEventListener("scroll", this.handleScrollSpy);
+    window.removeEventListener("scroll", this.checkScrollPosition);
   },
   methods: {
     setTab(tab) {
-      const menuTab = document.getElementById('menuTab');
-      const categoriesTab = document.getElementById('categoriesTab');
-      document.querySelectorAll('.menu-tab').forEach(el => el.classList.remove('active'));
-      if (tab === 'menu') {
-        menuTab.style.display = '';
-        categoriesTab.style.display = 'none';
-        document.querySelector('.menu-tab:nth-child(1)').classList.add('active');
+      const menuTab = document.getElementById("menuTab");
+      const categoriesTab = document.getElementById("categoriesTab");
+      document.querySelectorAll(".menu-tab").forEach((el) => el.classList.remove("active"));
+      if (tab === "menu") {
+        menuTab.style.display = "";
+        categoriesTab.style.display = "none";
+        document.querySelector(".menu-tab:nth-child(1)").classList.add("active");
       } else {
-        menuTab.style.display = 'none';
-        categoriesTab.style.display = '';
-        document.querySelector('.menu-tab:nth-child(2)').classList.add('active');
+        menuTab.style.display = "none";
+        categoriesTab.style.display = "";
+        document.querySelector(".menu-tab:nth-child(2)").classList.add("active");
       }
     },
     toggleSubmenu(menu) {
       this.activeSubmenu = this.activeSubmenu === menu ? null : menu;
     },
+
     goToProfile(name) {
       this.$router.push(`/Profil_${name}`);
       this.$nextTick(() => this.closeOffcanvas());
     },
+
     openOffcanvas() {
       if (this.offcanvasInstance) this.offcanvasInstance.show();
     },
@@ -128,34 +135,58 @@ export default {
     },
     handleSearch(event) {
       const query = event.target.value.trim().toLowerCase();
-      const productTitles = document.querySelectorAll('.product-title');
+      const productTitles = document.querySelectorAll(".product-title");
       let found = false;
-      productTitles.forEach(title => {
-        title.classList.remove('highlight');
+      productTitles.forEach((title) => {
+        title.classList.remove("highlight");
         if (query && title.textContent.toLowerCase().includes(query)) {
           if (!found) {
-            title.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            title.scrollIntoView({ behavior: "smooth", block: "center" });
             found = true;
           }
-          title.classList.add('highlight');
+          title.classList.add("highlight");
         }
       });
-      if (event.key === 'Enter') {
-        const foundProduct = this.products.find(p => p.name.toLowerCase().includes(query));
+      if (event.key === "Enter") {
+        const foundProduct = this.products.find((p) => p.name.toLowerCase().includes(query));
         if (foundProduct) {
           this.$router.push(`/product/${foundProduct.id}`);
         } else {
-          alert('Produk tidak ditemukan.');
+          alert("Produk tidak ditemukan.");
         }
       }
     },
     handleClickOutside(e) {
-      const sidebar = document.getElementById('offcanvasWithBothOptions');
-      if (this.offcanvasInstance && sidebar.classList.contains('show') && !sidebar.contains(e.target) && !e.target.closest('.btn.list')) {
+      const sidebar = document.getElementById("offcanvasWithBothOptions");
+      if (this.offcanvasInstance && sidebar.classList.contains("show") && !sidebar.contains(e.target) && !e.target.closest(".btn.list")) {
         this.closeOffcanvas();
       }
-    }
-  }
+    },
+    handleScrollSpy() {
+      const sections = [
+        { id: "carouselExample", link: "/HomePage#carouselExample" },
+        { id: "about-us", link: "/HomePage#about-us" },
+        { id: "categories", link: "/HomePage#categories" },
+        { id: "all-products", link: "/HomePage#all-products" },
+        { id: "contact", link: "/HomePage#contact" },
+      ];
+      const scrollPos = window.scrollY + 100;
+      sections.forEach(({ id, link }) => {
+        const section = document.getElementById(id);
+        const navLink = document.querySelector(`.navbare a[href='${link}']`);
+        if (section && navLink) {
+          if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+            navLink.classList.add("active-nav");
+          } else {
+            navLink.classList.remove("active-nav");
+          }
+        }
+      });
+    },
+    checkScrollPosition() {
+      this.isScrolled = window.scrollY > 0;
+    },
+  },
 };
 </script>
 

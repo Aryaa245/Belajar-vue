@@ -6,10 +6,14 @@ class Products extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Product_model');
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
     }
 
     // ✅ FINAL version of `manage()` (menggabungkan semua data)
-    public function manage() {
+   public function manage() {
         $error = '';
         try {
             $products     = $this->Product_model->get_all_products();
@@ -41,8 +45,18 @@ class Products extends CI_Controller {
         $products = $this->Product_model->get_all_products();
         $this->load->view('products_list', ['products' => $products]);
     }
+    public function fetch_all() {
 
+    header('Content-Type: application/json');
+    $response = [
+        'products' => $this->Product_model->get_all_products(),
+        'best_sellers' => $this->Product_model->get_all_best_sellers(),
+        'on_sales' => $this->Product_model->get_all_on_sale()
+    ];
+    echo json_encode($response);
+}
 public function create_form() {
+    header('Content-Type: application/json');
     $errors = [];
     $success = false;
 
@@ -84,12 +98,10 @@ public function create_form() {
                 'qr_code'     => $qr_code
             ];
 
-            // Insert ke tabel products sementara untuk ambil ID dan data lengkap
             $this->db->insert('products', $data);
             $id = $this->db->insert_id();
             $success = true;
 
-            // Cek apakah produk dicentang untuk kategori khusus
             $is_best_seller = $this->input->post('is_best_seller');
             $is_on_sale     = $this->input->post('is_on_sale');
 
@@ -101,39 +113,60 @@ public function create_form() {
                 $this->Product_model->insert_on_sale($id);
             }
 
-            // Jika masuk ke best_seller atau on_sale, hapus dari tabel products (New Arrival)
             if ($is_best_seller || $is_on_sale) {
                 $this->db->delete('products', ['id' => $id]);
             }
         }
     }
+header('Content-Type: application/json');
+echo json_encode([
+    'success' => $success,
+    'errors' => $errors
+]);
 
-    $this->load->view('products/create_form', [
-        'errors'  => $errors,
-        'success' => $success
-    ]);
 }
 
 
 
-    public function delete($id) {
-        if (!is_numeric($id)) show_error('ID produk tidak valid.', 400);
 
-        $product = $this->Product_model->get_product_by_id($id);
-        if (!$product) show_error('Produk tidak ditemukan.', 404);
+     public function delete($id) {
+        $type = $this->input->get('type');
 
-        $basePath = realpath(dirname(APPPATH) . '/../vue-project/public');
-
-        foreach (['image_1', 'image_2', 'image_3', 'qr_code'] as $imgField) {
-            if (!empty($product[$imgField])) {
-                $filePath = $basePath . $product[$imgField];
-                if (file_exists($filePath)) unlink($filePath);
-            }
+        if (!is_numeric($id)) {
+            echo json_encode(['status' => false, 'message' => 'ID tidak valid.']);
+            return;
         }
 
-        $this->Product_model->delete_product($id);
-        redirect('index.php/products/manage?deleted=1');
+        switch ($type) {
+            case 'products':
+                $product = $this->Product_model->get_product_by_id($id);
+                if (!$product) {
+                    echo json_encode(['status' => false, 'message' => 'Produk tidak ditemukan.']);
+                    return;
+                }
+                $basePath = realpath(dirname(APPPATH) . '/../vue-project/public');
+                foreach (['image_1', 'image_2', 'image_3', 'qr_code'] as $imgField) {
+                    if (!empty($product[$imgField])) {
+                        $filePath = $basePath . $product[$imgField];
+                        if (file_exists($filePath)) unlink($filePath);
+                    }
+                }
+                $this->Product_model->delete_product($id);
+                break;
+            case 'best_seller':
+                $this->Product_model->delete_best_seller($id);
+                break;
+            case 'on_sale':
+                $this->Product_model->delete_on_sale($id);
+                break;
+            default:
+                echo json_encode(['status' => false, 'message' => 'Tipe produk tidak valid.']);
+                return;
+        }
+
+        echo json_encode(['status' => true]);
     }
+
 
     public function detail($slug) {
         header('Content-Type: application/json');
@@ -141,14 +174,57 @@ public function create_form() {
         echo json_encode($product ? $product : ['error' => 'Produk tidak ditemukan']);
     }
 
-    public function detail_view($slug) {
-        $product = $this->Product_model->get_product_by_slug($slug);
-        if ($product) {
-            $this->load->view('product_detail', ['product' => $product]);
-        } else {
-            show_404();
-        }
+   public function detail_view($slug) {
+    // Set header response menjadi JSON
+    header('Content-Type: application/json');
+
+    // Ambil parameter type dari query string (?type=products, best_seller, atau on_sale)
+    $type = $this->input->get('type');
+
+    // Validasi parameter slug dan type
+    if (empty($slug) || empty($type)) {
+        echo json_encode([
+            'status' => false,
+            'message' => 'Parameter slug dan type wajib diisi.'
+        ]);
+        return;
     }
+
+    // Tentukan nama tabel berdasarkan type
+    $table = '';
+    if ($type === 'products') {
+        $table = 'products';
+    } elseif ($type === 'best_seller') {
+        $table = 'best_seller';
+    } elseif ($type === 'on_sale') {
+        $table = 'on_sale';
+    } else {
+        echo json_encode([
+            'status' => false,
+            'message' => 'Parameter type tidak valid.'
+        ]);
+        return;
+    }
+
+    // Query data berdasarkan slug
+    $this->db->where('slug', $slug);
+    $query = $this->db->get($table);
+    $product = $query->row_array();
+
+    // Kembalikan hasil sebagai JSON
+    if ($product) {
+        echo json_encode([
+            'status' => true,
+            'data' => $product
+        ]);
+    } else {
+        echo json_encode([
+            'status' => false,
+            'message' => 'Produk tidak ditemukan.'
+        ]);
+    }
+}
+
 
     public function edit($id) {
         if (!is_numeric($id)) show_error('ID produk tidak valid.', 400);

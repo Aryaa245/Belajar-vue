@@ -18,6 +18,12 @@ import Login from '../views/Login.vue'
 import DashboardAdmin  from '../views/DashboardAdmin.vue'
 import CreateUser from '../views/user/Create.vue'
 import EditUser from '../views/user/Edit.vue'
+import ManageProduct from '../views/Manage_product.vue'
+import CreateForm from '../views/products/Create_form.vue'
+
+
+
+
 
 
 const routes = [
@@ -50,7 +56,20 @@ const routes = [
   },
 
 { path: '/users/create', name: 'Create', component: CreateUser, meta: { layout:'auth', requiresAuth: true } },
-{ path: '/users/edit/:id', name: 'Edit', component: EditUser, meta: { layout:'auth', requiresAuth: true } }
+{ path: '/users/edit/:id', name: 'Edit', component: EditUser, meta: { layout:'auth', requiresAuth: true } },
+{
+  path: '/products/manage',
+  name: 'ManageProduct',
+  component: ManageProduct,
+  meta: { layout: 'auth', requiresAuth: true }
+},
+
+{
+  path: '/products/create',
+  name: 'CreateForm',
+  component: CreateForm,
+  meta: { layout: 'auth', requiresAuth: true }
+}
 
 
 ]
