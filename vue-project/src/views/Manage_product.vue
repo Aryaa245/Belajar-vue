@@ -98,7 +98,7 @@
           <td>{{ p.status }}</td>
           <td>{{ p.created_at }}</td>
           <td>
-            <router-link :to="`/products/edit/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
+            <router-link :to="`/products/edit_on_sale/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
             <button class="btn-delete" @click="deleteProduct(p.id, 'on_sale')">Hapus</button>
           </td>
         </tr>

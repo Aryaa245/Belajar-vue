@@ -439,6 +439,103 @@ public function update($id)
     }
 }
 
+public function get_product_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Methods: GET, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Credentials: true");
+    header("Content-Type: application/json");
+
+    $this->load->model('Product_model');
+    $product = $this->Product_model->get_product_by_id($id);
+    echo json_encode($product);
+}
+
+public function update_product_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Credentials: true");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit(0);
+
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    $data = [
+        'title' => $input['title'],
+        'specs' => $input['specs'],
+        'price' => $input['price'],
+        'old_price' => $input['old_price'],
+        'status' => $input['status'],
+        'category' => $input['category'],
+        'buy_link' => $input['buy_link'],
+        'description' => $input['description']
+    ];
+
+    $this->load->model('Product_model');
+    $updated = $this->Product_model->update_product($id, $data);
+
+    if ($updated) {
+        echo json_encode(['status' => true]);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Gagal memperbarui produk.']);
+    }
+}
+
+public function update_on_sale_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $this->load->model('Product_model');
+
+    $update = [
+        'title'       => $data['title'] ?? '',
+        'specs'       => $data['specs'] ?? '',
+        'price'       => $data['price'] ?? 0,
+        'old_price'   => $data['old_price'] ?? 0,
+        'status'      => $data['status'] ?? 'In Stock',
+        'category'    => $data['category'] ?? '',
+        'buy_link'    => $data['buy_link'] ?? '',
+        'description' => $data['description'] ?? '',
+    ];
+
+    $updated = $this->Product_model->update_on_sale($id, $update);
+
+    if ($updated) {
+        echo json_encode(['status' => true, 'message' => 'Produk berhasil diperbarui']);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Produk tidak ditemukan atau gagal diperbarui']);
+    }
+}
+
+public function get_on_sale_by_id_api($id) {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Content-Type: application/json");
+
+    $this->load->model('Product_model');
+    $product = $this->Product_model->get_on_sale_by_id($id);
+
+    if ($product) {
+        echo json_encode($product);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Produk tidak ditemukan']);
+    }
+}
+
+
+
 
 
 

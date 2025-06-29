@@ -21,6 +21,7 @@ import EditUser from '../views/user/Edit.vue'
 import ManageProduct from '../views/Manage_product.vue'
 import CreateForm from '../views/products/Create_form.vue'
 import EditNewArrival from '../views/products/EditNewArrival.vue'
+import EditOnSale from '@/views/products/EditOnSale.vue'
 
 
 
@@ -69,12 +70,20 @@ const routes = [
   path: '/products/create',
   name: 'CreateForm',
   component: CreateForm,
+  meta: { layout: 'auth', requiresAuth: true }
 },
 
 {
   path: '/products/edit/:id',
   name: 'EditNewArrival',
   component: EditNewArrival,
+  meta: { layout: 'auth', requiresAuth: true }
+},
+
+{
+  path: '/products/edit_on_sale/:id',
+  name: 'EditOnSale',
+  component: EditOnSale,
   meta: { layout: 'auth', requiresAuth: true }
 }
 

@@ -75,14 +75,6 @@ public function delete_best_seller($id) {
     return $this->db->delete('best_seller');
 }
 
-	public function get_on_sale_by_id($id) {
-    return $this->db->get_where('on_sale', ['id' => $id])->row_array();
-}
-
-public function update_on_sale($id, $data) {
-    $this->db->where('id', $id);
-    return $this->db->update('on_sale', $data);
-}
 
 public function delete_on_sale($id) {
     $this->db->where('id', $id);
@@ -98,6 +90,15 @@ public function update_product($id, $data)
 {
     $this->db->where('id', $id);
     return $this->db->update('products', $data);
+}
+
+public function get_on_sale_by_id($id) {
+    return $this->db->get_where('on_sale', ['id' => $id])->row_array();
+}
+
+public function update_on_sale($id, $data) {
+    $this->db->where('id', $id);
+    return $this->db->update('on_sale', $data);
 }
 
 
