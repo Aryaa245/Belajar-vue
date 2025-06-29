@@ -20,6 +20,7 @@ import CreateUser from '../views/user/Create.vue'
 import EditUser from '../views/user/Edit.vue'
 import ManageProduct from '../views/Manage_product.vue'
 import CreateForm from '../views/products/Create_form.vue'
+import EditNewArrival from '../views/products/EditNewArrival.vue'
 
 
 
@@ -68,8 +69,15 @@ const routes = [
   path: '/products/create',
   name: 'CreateForm',
   component: CreateForm,
+},
+
+{
+  path: '/products/edit/:id',
+  name: 'EditNewArrival',
+  component: EditNewArrival,
   meta: { layout: 'auth', requiresAuth: true }
 }
+
 
 
 ]

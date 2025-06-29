@@ -375,5 +375,72 @@ public function delete_on_sale($id) {
 
     redirect('index.php/products/manage?deleted=1');
 }
+
+public function get_by_id($id)
+{
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
+
+    $this->load->model('Product_model');
+    $product = $this->Product_model->get_product_by_id($id);
+
+    if ($product) {
+        echo json_encode($product);
+    } else {
+        echo json_encode(['error' => 'Produk tidak ditemukan.']);
+    }
+}
+
+public function update($id)
+{
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        exit(0);
+    }
+
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!$data) {
+        echo json_encode(['status' => false, 'message' => 'Data tidak valid']);
+        return;
+    }
+
+    $this->load->model('Product_model');
+
+    $updateData = [
+        'title'       => $data['title'],
+        'specs'       => $data['specs'],
+        'price'       => $data['price'],
+        'old_price'   => $data['old_price'],
+        'status'      => $data['status'],
+        'category'    => $data['category'],
+        'buy_link'    => $data['buy_link'],
+        'description' => $data['description']
+    ];
+
+    $success = $this->Product_model->update_product($id, $updateData);
+
+    if ($success) {
+        echo json_encode(['status' => true, 'message' => 'Produk berhasil diperbarui.']);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Gagal memperbarui produk.']);
+    }
+}
+
+
+
+
 	
 }

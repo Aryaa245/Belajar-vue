@@ -37,11 +37,6 @@ public function insert_on_sale($id) {
 
 
     // Update produk
-    public function update_product($id, $data)
-    {
-        $this->db->where('id', $id);
-        return $this->db->update('products', $data);
-    }
 
     // Hapus produk
     public function delete_product($id)
@@ -64,11 +59,7 @@ public function insert_on_sale($id) {
     }
 
 
-	public function get_product_by_id($id)
-	{
-		$query = $this->db->get_where('products', ['id' => $id]);
-		return $query->row_array();
-	}
+
 
 	public function get_best_seller_by_id($id) {
     return $this->db->get_where('best_seller', ['id' => $id])->row_array();
@@ -97,4 +88,17 @@ public function delete_on_sale($id) {
     $this->db->where('id', $id);
     return $this->db->delete('on_sale');
 }
+
+public function get_product_by_id($id)
+{
+    return $this->db->get_where('products', ['id' => $id])->row_array();
+}
+
+public function update_product($id, $data)
+{
+    $this->db->where('id', $id);
+    return $this->db->update('products', $data);
+}
+
+
 }
