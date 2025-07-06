@@ -590,6 +590,33 @@ public function update_best_seller($id) {
 }
 
 
+public function get_by_slug($slug)
+{
+    header('Content-Type: application/json');
+
+    $product = $this->Product_model->get_product_by_slug($slug);
+    $table = 'products';
+
+    if (!$product) {
+        $product = $this->Product_model->get_best_seller_by_slug($slug);
+        $table = 'best_seller';
+    }
+
+    if (!$product) {
+        $product = $this->Product_model->get_on_sale_by_slug($slug);
+        $table = 'on_sale';
+    }
+
+    if ($product) {
+        $related = $this->Product_model->get_related_products($slug, $table);
+        echo json_encode([
+            'product' => $product,
+            'related' => $related
+        ]);
+    } else {
+        echo json_encode(['error' => 'Produk tidak ditemukan']);
+    }
+}
 
 
 
@@ -597,3 +624,5 @@ public function update_best_seller($id) {
 
 	
 }
+
+

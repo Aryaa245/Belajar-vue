@@ -134,7 +134,9 @@ export default {
   async created() {
     const slug = this.$route.params.id;
     try {
-      const res = await fetch(`http://localhost/technologia/Backend/products/get_product.php?id=${slug}`);
+ 
+      const res = await fetch(`http://localhost/technologia/CI3/index.php/products/get_by_slug/${slug}`);
+
       const data = await res.json();
 
       if (data.error) {

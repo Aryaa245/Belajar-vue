@@ -106,6 +106,23 @@ public function get_products_by_type($type) {
     return $this->db->get($type)->result_array();
 }
 
+public function get_best_seller_by_slug($slug)
+{
+    return $this->db->get_where('best_seller', ['slug' => $slug])->row_array();
+}
+
+public function get_on_sale_by_slug($slug)
+{
+    return $this->db->get_where('on_sale', ['slug' => $slug])->row_array();
+}
+
+public function get_related_products($slug, $table)
+{
+    $this->db->where('slug !=', $slug);
+    $this->db->order_by('created_at', 'DESC');
+    $this->db->limit(4);
+    return $this->db->get($table)->result_array();
+}
 
 
 }
