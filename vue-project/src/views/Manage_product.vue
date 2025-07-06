@@ -11,101 +11,113 @@
     </div>
 
     <router-link to="/products/create" class="btn">Tambah Produk Baru</router-link>
-
     <router-link to="/dashboard" class="btn btn-admin">Manajemen Admin</router-link>
 
+    <!-- Tab Navigasi -->
+    <div class="tab-nav">
+      <button :class="{ active: activeTab === 'new' }" @click="activeTab = 'new'">New Arrival</button>
+      <button :class="{ active: activeTab === 'best' }" @click="activeTab = 'best'">Best Seller</button>
+      <button :class="{ active: activeTab === 'sale' }" @click="activeTab = 'sale'">On Sale</button>
+    </div>
+
     <!-- Produk New Arrival -->
-    <h3>Produk New Arrival</h3>
-    <div v-if="products.length === 0">Belum ada produk New Arrival.</div>
-    <table v-else>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Judul</th>
-          <th>Slug</th>
-          <th>Harga</th>
-          <th>Status</th>
-          <th>Dibuat</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="p in products" :key="p.id">
-          <td>{{ p.id }}</td>
-          <td>{{ p.title }}</td>
-          <td>{{ p.slug }}</td>
-          <td>Rp{{ formatPrice(p.price) }}</td>
-          <td>{{ p.status }}</td>
-          <td>{{ p.created_at }}</td>
-          <td>
-            <router-link :to="`/products/edit/${p.id}?type=products`" class="btn-edit">Edit</router-link>
-            <button class="btn-delete" @click="deleteProduct(p.id, 'products')">Hapus</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="activeTab === 'new'">
+      <h3>Produk New Arrival</h3>
+      <div v-if="products.length === 0">Belum ada produk New Arrival.</div>
+      <table v-else>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Slug</th>
+            <th>Harga</th>
+            <th>Status</th>
+            <th>Dibuat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="p in products" :key="p.id">
+            <td>{{ p.id }}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.slug }}</td>
+            <td>Rp{{ formatPrice(p.price) }}</td>
+            <td>{{ p.status }}</td>
+            <td>{{ p.created_at }}</td>
+            <td>
+              <router-link :to="`/products/edit/${p.id}?type=products`" class="btn-edit">Edit</router-link>
+              <button class="btn-delete" @click="deleteProduct(p.id, 'products')">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Produk Best Seller -->
-    <h3>Produk Best Seller</h3>
-    <div v-if="bestSellers.length === 0">Belum ada produk Best Seller.</div>
-    <table v-else>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Judul</th>
-          <th>Slug</th>
-          <th>Harga</th>
-          <th>Status</th>
-          <th>Dibuat</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="p in bestSellers" :key="p.id">
-          <td>{{ p.id }}</td>
-          <td>{{ p.title }}</td>
-          <td>{{ p.slug }}</td>
-          <td>Rp{{ formatPrice(p.price) }}</td>
-          <td>{{ p.status }}</td>
-          <td>{{ p.created_at }}</td>
-          <td>
-            <router-link :to="`/products/edit_best_seller/${p.id}?type=best_seller`" class="btn-edit">Edit</router-link>
-            <button class="btn-delete" @click="deleteProduct(p.id, 'best_seller')">Hapus</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="activeTab === 'best'">
+      <h3>Produk Best Seller</h3>
+      <div v-if="bestSellers.length === 0">Belum ada produk Best Seller.</div>
+      <table v-else>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Slug</th>
+            <th>Harga</th>
+            <th>Status</th>
+            <th>Dibuat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="p in bestSellers" :key="p.id">
+            <td>{{ p.id }}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.slug }}</td>
+            <td>Rp{{ formatPrice(p.price) }}</td>
+            <td>{{ p.status }}</td>
+            <td>{{ p.created_at }}</td>
+            <td>
+              <router-link :to="`/products/edit_best_seller/${p.id}?type=best_seller`" class="btn-edit">Edit</router-link>
+              <button class="btn-delete" @click="deleteProduct(p.id, 'best_seller')">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Produk On Sale -->
-    <h3>Produk On Sale</h3>
-    <div v-if="onSales.length === 0">Belum ada produk On Sale.</div>
-    <table v-else>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Judul</th>
-          <th>Slug</th>
-          <th>Harga</th>
-          <th>Status</th>
-          <th>Dibuat</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="p in onSales" :key="p.id">
-          <td>{{ p.id }}</td>
-          <td>{{ p.title }}</td>
-          <td>{{ p.slug }}</td>
-          <td>Rp{{ formatPrice(p.price) }}</td>
-          <td>{{ p.status }}</td>
-          <td>{{ p.created_at }}</td>
-          <td>
-            <router-link :to="`/products/edit_on_sale/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
-            <button class="btn-delete" @click="deleteProduct(p.id, 'on_sale')">Hapus</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="activeTab === 'sale'">
+      <h3>Produk On Sale</h3>
+      <div v-if="onSales.length === 0">Belum ada produk On Sale.</div>
+      <table v-else>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Slug</th>
+            <th>Harga</th>
+            <th>Status</th>
+            <th>Dibuat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="p in onSales" :key="p.id">
+            <td>{{ p.id }}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.slug }}</td>
+            <td>Rp{{ formatPrice(p.price) }}</td>
+            <td>{{ p.status }}</td>
+            <td>{{ p.created_at }}</td>
+            <td>
+              <router-link :to="`/products/edit_on_sale/${p.id}?type=on_sale`" class="btn-edit">Edit</router-link>
+              <button class="btn-delete" @click="deleteProduct(p.id, 'on_sale')">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -119,7 +131,8 @@ export default {
       },
       products: [],
       bestSellers: [],
-      onSales: []
+      onSales: [],
+      activeTab: 'new'
     };
   },
   created() {
@@ -143,13 +156,12 @@ export default {
     deleteProduct(id, type) {
       if (!confirm('Yakin ingin menghapus produk ini?')) return;
 
-      // Sesuaikan untuk handle CI3 yang tidak mengenal DELETE method secara native
       fetch(`http://localhost/technologia/CI3/index.php/products/delete/${id}?type=${type}`, {
-        method: 'POST', // Ganti ke POST karena CI3 biasanya tidak support DELETE langsung
+        method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: '_method=DELETE', // Simulasikan method override
+        body: '_method=DELETE',
         credentials: 'include'
       })
         .then(res => res.json())
@@ -169,7 +181,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .container-manage {
   padding: 40px;
@@ -203,6 +214,15 @@ export default {
   color: #ffffff;
   text-decoration: underline;
   font-weight: 500;
+  background-color: #00b969;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.header-nav a:hover {
+  background-color: #17a589;
 }
 
 /* Tombol Tambah Produk */
@@ -222,18 +242,71 @@ export default {
   background-color: #17a589;
 }
 
-h3 {
-  width: fit-content;
-  margin-top: 60px;
-  margin-bottom: 15px;
-  font-size: 20px;
-  color: rgb(0, 0, 0);
-  padding: 8px 20px;
-  border-radius: 6px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.btn-admin {
+  background-color: #00b969;
+  margin-left: 12px;
 }
 
+/* Tab Navigasi */
+.tab-nav {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+}
+
+.tab-nav button {
+  position: relative;
+  padding: 10px 18px;
+  background-color: #ffffff;
+  border: 2px solid #4E71FF;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  transition: 0.3s ease;
+  overflow: hidden;
+  border-bottom: 4px solid transparent;
+}
+
+.tab-nav button::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background-color: #000000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.tab-nav button:hover::after {
+  transform: scaleX(1);
+}
+
+.tab-nav button.active {
+  background-color: #00b969;
+  color: #ffffff;
+ 
+}
+
+.tab-nav button.active::after {
+  transform: scaleX(1);
+  background-color: #ffffff;
+}
+
+h3 {
+  width: fit-content;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  padding: 8px 20px;
+  border-radius: 6px;
+   background-color: #00b969;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
 /* Tabel Produk */
 table {
@@ -261,7 +334,6 @@ th {
   font-weight: 600;
 }
 
-/* Baris Hover */
 tr:hover {
   background-color: #f3f9ff;
 }
@@ -277,7 +349,7 @@ tr:hover {
   cursor: pointer;
   transition: 0.3s ease;
   text-transform: uppercase;
-  text-decoration: none !important; /* Hilangkan underline */
+  text-decoration: none !important;
   display: inline-block;
 }
 
@@ -320,29 +392,5 @@ tr:hover {
     padding: 6px 10px;
   }
 }
-
-
-.btn-admin {
-  background-color: #00b969;
-  margin-left: 
-  12px; 
-}
-
-.header-nav a {
-  background-color: #00b969;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #ffffff;
-  text-decoration: none; 
-  transition: 0.3s ease;
-}
-
-.header-nav a:hover {
-  background-color: #17a589;
-}
-
-
-
 </style>
 
